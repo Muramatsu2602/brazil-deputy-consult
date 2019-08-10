@@ -1,3 +1,3 @@
-Tabela usuario - id_usuario, nome, RG, cpf, data_nasc, senha, email, ideologia;
+Tabela usuario - id_usuario, nome,  cpf, data_nasc, senha, email, ideologia;
 Tabela politico_favorito - id_politico, usuario_id, diagrama_id,//id_legislatura, nome, partido, foto//;
 Tabela diagrama- id_diagrama, politico_id(array), usuario_id
