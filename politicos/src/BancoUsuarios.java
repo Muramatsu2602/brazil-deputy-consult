@@ -18,10 +18,11 @@ public class BancoUsuarios {
     private int id_usuario;
     private String nome;
     private int cpf;
-    private String dt_nasc;
+    //private String dt_nasc;
     private String email;
     private String senha;
     private String ideologia;
+    private int status;
 
     public BancoUsuarios() {
         bdid = 0;
@@ -35,23 +36,6 @@ public class BancoUsuarios {
         //url="jdbc:postgresql://200.145.153.163:5432/banco73b2017";  
     }
 
-    // ENCAPSULAMENTO
-    public void setId(String c) {
-        bdid = Integer.parseInt(c);
-    }
-
-    public void setTipo(String n) {
-        bdtipo = n;
-    }
-
-    public int getId() {
-        return bdid;
-    }
-
-    public String getTipo() {
-        return bdtipo;
-    }
-
     // METODOS BANCO - USuario
     public void incluir()//pkchave (chamada,turma)
     {
@@ -59,25 +43,24 @@ public class BancoUsuarios {
                 + "id_usuario,"
                 + "nome,"
                 + "cpf,"
-                + "dt_nasc,"
+                //+ "dt_nasc,"
                 + "email,"
                 + "senha,"
                 + "ideologia,"
-                + "created_at) "
-                + "VALUES ("
-                + this.id_usuario
-                + "," + this.nome
-                + "," + this.cpf
-                + "," + this.dt_nasc
-                + "," + this.email
-                + "," + this.senha
-                + "," + this.ideologia
-                + "," + "NOW()"
-                + ")";
+                + "status) "
+                + "VALUES (?,?,?,?,?,?,?)";
         try {
             pstmt = con.prepareStatement(fsql);
-            pstmt.setString(1, bdtipo);
 
+            pstmt.setInt(1, this.id_usuario);
+            pstmt.setString(2, this.nome);
+            pstmt.setInt(3, this.cpf);
+            pstmt.setString(4, this.email);
+            pstmt.setString(5, this.senha);
+            pstmt.setString(6, this.ideologia);
+            pstmt.setInt(7, this.status);
+
+            //pstmt.setString(1, this.dt_nasc);
             pstmt.execute();
             pstmt.close();
         } catch (Exception erro) {
@@ -102,19 +85,24 @@ public class BancoUsuarios {
     // enviar id_usuario via parametro das funcoes?
     public void alterar() {
         fsql = "UPDATE usuarios SET"
-                + " nome=" + this.nome
-                + ", cpf=" + this.cpf
-                + ", dt_nasc=" + this.dt_nasc
-                + ", email=" + this.email
-                + ", senha=" + this.senha
-                + ", ideologia=" + this.ideologia
-                + "where id=" + this.id_usuario + ";";
+                + " nome=?"
+                + ", cpf=?"
+                //+ ", dt_nasc=" + this.dt_nasc
+                + ", email=?"
+                + ", senha=?"
+                + ", ideologia=?"
+                + "where id=?;";
         try {
             pstmt = con.prepareStatement(fsql);
 
             //pstmt.setString(1,bdnome);
-            pstmt.setString(1, this.bdtipo);
-            pstmt.setInt(2, bdid);
+            pstmt.setString(1, this.nome);
+            pstmt.setInt(2, this.cpf);
+            pstmt.setString(3, this.email);
+            pstmt.setString(4, this.senha);
+            pstmt.setString(5, this.ideologia);
+            pstmt.setInt(6, this.id_usuario);
+
             pstmt.execute();
             pstmt.close();
         } catch (Exception erro) {
@@ -146,7 +134,7 @@ public class BancoUsuarios {
     public ArrayList pegadados() {
         ArrayList dados;
         dados = new ArrayList();
-        fsql = "SELECT * FROM usuarios";
+        fsql = "SELECT * FROM usuarios AND status=1;";
         try {
             stmt = con.createStatement();
             rs = stmt.executeQuery(fsql);
@@ -162,17 +150,18 @@ public class BancoUsuarios {
                 this.nome = rs.getString("nome");
                 this.cpf = rs.getInt("cpf");
                 this.email = rs.getString("email");
-                this.dt_nasc = rs.getString("dt_nasc");
+                //this.dt_nasc = rs.getString("dt_nasc");
                 this.senha = rs.getString("senha");
                 this.ideologia = rs.getString("ideologia");
-
+                this.status = rs.getInt("status");
                 dados.add(this.id_usuario);
                 dados.add(this.nome);
                 dados.add(this.cpf);
                 dados.add(this.email);
-                dados.add(this.dt_nasc);
+                //dados.add(this.dt_nasc);
                 dados.add(this.senha);
                 dados.add(this.ideologia);
+                dados.add(this.status);
 
             }///while	
             stmt.close();
@@ -184,7 +173,7 @@ public class BancoUsuarios {
     }//pegadados
 
     public boolean procura(String id) {
-        fsql = "SELECT * FROM usuarios WHERE id_usuario=" + id + ";";
+        fsql = "SELECT * FROM usuarios WHERE id_usuario=? AND status=1;";
         try {
             pstmt = con.prepareStatement(fsql);
             int idd = Integer.parseInt(id);
@@ -225,7 +214,7 @@ public class BancoUsuarios {
      */
     public String retorna() {
         String volta = "";
-        fsql = "SELECT * FROM usuarios";
+        fsql = "SELECT * FROM usuarios WHERE status=1;";
         try {
             stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,
                     ResultSet.CONCUR_READ_ONLY);
@@ -255,4 +244,20 @@ public class BancoUsuarios {
      b2.incluir();
      b2.disconnect();
      }*/
+    // ENCAPSULAMENTO
+    public void setId(String c) {
+        bdid = Integer.parseInt(c);
+    }
+
+    public void setTipo(String n) {
+        bdtipo = n;
+    }
+
+    public int getId() {
+        return bdid;
+    }
+
+    public String getTipo() {
+        return bdtipo;
+    }
 }// CLASS

@@ -34,14 +34,14 @@ public class SQLUsuarios extends JFrame implements ActionListener, MouseListener
     //botao alterar dados
     private int linhaltera;
 
-    private bancotipo bantipo;
+    private BancoUsuarios banUsu;
 
     public void leGradeSql() {
         ArrayList vetor;
         vetor = new ArrayList();
         try {
-            bantipo.connect();///conecta
-            vetor = bantipo.pegadados();//pega todos os campos
+            banUsu.connect();///conecta
+            vetor = banUsu.pegadados();//pega todos os campos
             if (vetor.isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Tabela vazia tipo!!!");
                 return;
@@ -54,7 +54,7 @@ public class SQLUsuarios extends JFrame implements ActionListener, MouseListener
                     modelo.addRow(linha);
                 }//for
             }
-            bantipo.disconnect();//desconecta		
+            banUsu.disconnect();//desconecta		
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(null,
                     "Erro na leitura tabela tipo:" + erro);
@@ -164,10 +164,10 @@ public class SQLUsuarios extends JFrame implements ActionListener, MouseListener
                     "Excluir linha:" + tabela.getValueAt(linex, 1),
                     "Excluindo", 0) == 0)//sim=0 nao=1
             {
-                bantipo.connect();
-                bantipo.setId("" + tabela.getValueAt(linex, 0));
-                bantipo.excluir();
-                bantipo.disconnect();
+                banUsu.connect();
+                banUsu.setId("" + tabela.getValueAt(linex, 0));
+                banUsu.excluir();
+                banUsu.disconnect();
                 modelo.removeRow(linex);
                 limpaTudo();
             }
@@ -184,20 +184,20 @@ public class SQLUsuarios extends JFrame implements ActionListener, MouseListener
 
             if (linhaltera == -1)///botao novo
             { //nova linha na grade
-                bantipo.connect();
-                bantipo.setTipo(cxtipo.getText());
-                bantipo.incluir();
-                cxpktipo.setText(bantipo.retornaUltimo());
-                bantipo.disconnect();
+                banUsu.connect();
+                banUsu.setTipo(cxtipo.getText());
+                banUsu.incluir();
+                //cxpktipo.setText(banUsu.retornaUltimo());
+                banUsu.disconnect();
                 String linha[] = {cxpktipo.getText(), cxtipo.getText()};
                 modelo.addRow(linha);//coloca na grade
             } else///botao alterar
             {
-                bantipo.connect();
-                bantipo.setId(cxpktipo.getText());
-                bantipo.setTipo(cxtipo.getText());
-                bantipo.alterar();
-                bantipo.disconnect();
+                banUsu.connect();
+                banUsu.setId(cxpktipo.getText());
+                banUsu.setTipo(cxtipo.getText());
+                banUsu.alterar();
+                banUsu.disconnect();
                 tabela.setValueAt(cxpktipo.getText(), linhaltera, 0);
                 tabela.setValueAt(cxtipo.getText(), linhaltera, 1);
             }
@@ -212,7 +212,7 @@ public class SQLUsuarios extends JFrame implements ActionListener, MouseListener
     }///actionperformed	
 ///////////////////construtor
 
-    public Sqltipo() {
+    public SQLUsuarios() {
         super("Arquivo SQL- TABELA TIPO ALUNO");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         // Bloco 2 - Definição dos dados da Janela
@@ -309,13 +309,13 @@ public class SQLUsuarios extends JFrame implements ActionListener, MouseListener
 
         habilitaTudo(false, 1);//1=limpa campos
 
-        bantipo = new bancotipo();
+        banUsu = new BancoUsuarios();
         leGradeSql();
         show();
     }
     
     
      public static void main(String args[]) {
-        new Sqltipo();
+        new SQLUsuarios();
     }
 }
