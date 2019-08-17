@@ -23,23 +23,38 @@ public class executorTeste {
     
     public static void main(String args[]) throws JSONException{
         
-        camaraApi dados_camara = new camaraApi();
+        
+    
         String pesquisa;
         try (Scanner sc1 = new Scanner(System.in)) {
             pesquisa = sc1.next();
         }
-        System.out.println("aa"+dados_camara.getInfo());
+        
+        camaraApi dados_camara = new camaraApi();
         JSONObject my_obj = new JSONObject(dados_camara.getInfo());
         JSONArray array_deputados = my_obj.getJSONArray("dados");
+        JSONObject obj;
+        Deputado dep = new Deputado();
+        System.out.println("aa"+dados_camara.getInfo());
+        
         for(int x = 0; x<array_deputados.length(); x++){
           //  System.out.println("(" + x + ") " + array_deputados.get(x));
-            JSONObject obj = new JSONObject(array_deputados.get(x).toString());
+            obj = new JSONObject(array_deputados.get(x).toString());
             System.out.println("nome do gloriosissimo cidadao: " + obj.getString("nome"));
-            if(obj.getString("nome").equals(pesquisa)){
-                System.out.println(obj.getString("nome") + obj.getString("id"));
+            if(obj.getString("nome").toLowerCase().contains(pesquisa.toLowerCase())){
+              dep = new Deputado(obj);
+              break;
             }
         }
         
+        System.out.println("\n\nINFO DEP:\n" +
+                            "id - " +dep.getId() + "\n" +
+                           "nome - " +dep.getNome() + "\n"  +                  
+                           "id legis - " +dep.getIdLegislatura()+ "\n" + 
+                           "sigla partido - " +dep.getSiglaPartido()+ "\n" + 
+                           "foto - " +dep.getUrlFoto()+ "\n" + 
+                           "Sigla uf - " +dep.getSiglaUf() + "\n" + 
+                           "uri partido - " +dep.getUriPartido());
         
        
          
