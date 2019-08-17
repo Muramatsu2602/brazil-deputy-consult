@@ -21,6 +21,7 @@ public class BancoFavoritos {
     private int usuario_id;
     private int deputado_id;
     private String partido;
+    private int status;
     private String foto; // TESTAR PRIMEIRO SEM ELA
 
     public BancoFavoritos() {
@@ -35,45 +36,27 @@ public class BancoFavoritos {
         //url="jdbc:postgresql://200.145.153.163:5432/banco73b2017";  
     }
 
-    // ENCAPSULAMENTO
-    public void setId(String c) {
-        bdid = Integer.parseInt(c);
-    }
-
-    public void setTipo(String n) {
-        bdtipo = n;
-    }
-
-    public int getId() {
-        return bdid;
-    }
-
-    public String getTipo() {
-        return bdtipo;
-    }
-
     // METODOS BANCO - USuario
     public void incluir()//pkchave (chamada,turma)
     {
         fsql = "INSERT INTO favoritos ("
-                + "id_favoritos,"
                 + "nome,"
                 + "usuario_id,"
                 + "deputado_id,"
                 + "partido,"
-                + "foto"
+                + "foto,"
+                + "status,"
                 + ")"
-                + "VALUES ("
-                + this.id_favoritos
-                + "," + this.nome
-                + "," + this.usuario_id
-                + "," + this.deputado_id
-                + "," + this.partido
-                + "," + this.foto
-                + ")";
+                + "VALUES (?,?,?,?,?,?)";
         try {
             pstmt = con.prepareStatement(fsql);
-            pstmt.setString(1, bdtipo);
+            // pstmt.setInt(1, this.id_favoritos);
+            pstmt.setString(1, this.nome);
+            pstmt.setInt(2, this.usuario_id);
+            pstmt.setInt(3, this.deputado_id);
+            pstmt.setString(4, this.partido);
+            pstmt.setString(5, this.foto);
+            pstmt.setInt(6, 1);
 
             pstmt.execute();
             pstmt.close();
@@ -84,10 +67,10 @@ public class BancoFavoritos {
     }
 
     public void excluir() {
-        fsql = "DELETE FROM favoritos where id_favoritos=" + this.id_favoritos + ";";
+        fsql = "DELETE FROM favoritos WHERE id_favoritos=?";
         try {
             pstmt = con.prepareStatement(fsql);
-            pstmt.setInt(1, bdid);
+            pstmt.setInt(1, this.id_favoritos);
             pstmt.execute();
             pstmt.close();
         } catch (Exception erro) {
@@ -99,16 +82,18 @@ public class BancoFavoritos {
     // enviar id_usuario via parametro das funcoes?
     public void alterar() {
         fsql = "UPDATE favoritos SET"
-                + " nome=" + this.nome
-                + ", partido=" + this.partido
-                + ", foto=" + this.foto
-                + "where id=" + this.id_favoritos + ";";
+                + " nome=?"
+                + ", partido=?"
+                + ", foto=?"
+                + "WHERE id_favoritos=? ;";
         try {
             pstmt = con.prepareStatement(fsql);
 
             //pstmt.setString(1,bdnome);
-            pstmt.setString(1, this.bdtipo);
-            pstmt.setInt(2, bdid);
+            pstmt.setString(1, this.nome);
+            pstmt.setString(2, this.partido);
+            pstmt.setString(3, this.foto);
+            pstmt.setInt(4, this.id_favoritos);
             pstmt.execute();
             pstmt.close();
         } catch (Exception erro) {
@@ -140,7 +125,7 @@ public class BancoFavoritos {
     public ArrayList pegadados() {
         ArrayList dados;
         dados = new ArrayList();
-        fsql = "SELECT * FROM favoritos";
+        fsql = "SELECT * FROM favoritos WHERE status=1;";
         try {
             stmt = con.createStatement();
             rs = stmt.executeQuery(fsql);
@@ -156,12 +141,14 @@ public class BancoFavoritos {
                 this.deputado_id = rs.getInt("deputado_id");
                 this.partido = rs.getString("partido");
                 this.foto = rs.getString("foto");
-                
+                this.status = rs.getInt("status");
+
                 dados.add(id_favoritos);
                 dados.add(nome);
                 dados.add(deputado_id);
                 dados.add(partido);
                 dados.add(foto);
+                dados.add(status);
 
                 /*
                  private String nome;
@@ -180,11 +167,11 @@ public class BancoFavoritos {
     }//pegadados
 
     public boolean procura(String id) {
-        fsql = "SELECT * FROM usuarios WHERE id_favoritos=" + id + ";";
+        fsql = "SELECT * FROM usuarios WHERE id_favoritos=? AND status=1;";
         try {
             pstmt = con.prepareStatement(fsql);
             int idd = Integer.parseInt(id);
-            pstmt.setInt(1, idd);
+            pstmt.setInt(1,idd);
             rs = pstmt.executeQuery();
             if (rs.next()) {
                 return true;//achou
@@ -251,4 +238,68 @@ public class BancoFavoritos {
      b2.incluir();
      b2.disconnect();
      }*/
+    // ENCAPSULAMENTO
+    public void setId(String c) {
+        bdid = Integer.parseInt(c);
+    }
+
+    public void setTipo(String n) {
+        bdtipo = n;
+    }
+
+    public int getId() {
+        return bdid;
+    }
+
+    public String getTipo() {
+        return bdtipo;
+    }
+
+    public int getId_favoritos() {
+        return id_favoritos;
+    }
+
+    public void setId_favoritos(int id_favoritos) {
+        this.id_favoritos = id_favoritos;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public int getUsuario_id() {
+        return usuario_id;
+    }
+
+    public void setUsuario_id(int usuario_id) {
+        this.usuario_id = usuario_id;
+    }
+
+    public int getDeputado_id() {
+        return deputado_id;
+    }
+
+    public void setDeputado_id(int deputado_id) {
+        this.deputado_id = deputado_id;
+    }
+
+    public String getPartido() {
+        return partido;
+    }
+
+    public void setPartido(String partido) {
+        this.partido = partido;
+    }
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
 }// CLASS
