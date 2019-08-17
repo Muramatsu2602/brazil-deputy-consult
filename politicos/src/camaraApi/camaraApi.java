@@ -27,7 +27,7 @@ public class camaraApi {
     
     private CloseableHttpClient HTTPclient;
     
-    private camaraApi(){
+    camaraApi(){
         this.HTTPclient = HttpClients.createDefault();
     }
     
