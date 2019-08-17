@@ -30,7 +30,7 @@ public class BancoFavoritos {
         fsql = "";
         con = null;
         usuario = "postgres";
-        senha_banco = "sqladmin";
+        senha_banco = "a";
         drive = "org.postgresql.Driver";
         url = "jdbc:postgresql://localhost:5432/politicos";
         //url="jdbc:postgresql://200.145.153.163:5432/banco73b2017";  
