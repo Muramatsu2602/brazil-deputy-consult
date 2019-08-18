@@ -13,43 +13,43 @@ import org.json.JSONObject;
  * @author ra1757036
  */
 public class Deputado {
-    private int id;
+    private String id;
     private String uri;
     private String nome;
     private String siglaPartido;
     private String uriPartido;
     private String siglaUf;
-    private int idLegislatura;
+    private String idLegislatura;
     private String urlFoto;
     private String email;
     
     Deputado(JSONObject deputado) throws JSONException{
-       this.id = deputado.getInt("id");
+       this.id = Integer.toString(deputado.getInt("id"));
        this.uri = deputado.getString("uri");
        this.nome = deputado.getString("nome");
        this.siglaPartido = deputado.getString("siglaPartido");
        this.uriPartido = deputado.getString("uriPartido");
        this.siglaUf = deputado.getString("siglaUf");
-       this.idLegislatura = deputado.getInt("idLegislatura");
+       this.idLegislatura = Integer.toString(deputado.getInt("idLegislatura"));
        this.urlFoto = deputado.getString("urlFoto");
        this.email = deputado.getString("email");
     }
 
     Deputado() {
-        this.id = 0;
+        this.id = "";
        this.uri = "";
        this.nome = "";
        this.siglaPartido = "";
        this.uriPartido = "";
        this.siglaUf = "";
-       this.idLegislatura = 0;
+       this.idLegislatura = "";
        this.urlFoto = "";
        this.email = "";
     }
-    public int getId(){
+    public String getId(){
         return this.id;
     }
-    public void setId(int id){
+    public void setId(String id){
         this.id = id;
     }
     
@@ -88,10 +88,10 @@ public class Deputado {
         this.siglaUf = siglaUf;
     }
     
-      public int getIdLegislatura(){
+      public String getIdLegislatura(){
         return this.idLegislatura;
     }
-    public void setIdLegislatura(int idLegislatura){
+    public void setIdLegislatura(String idLegislatura){
         this.idLegislatura = idLegislatura;
     }
     

@@ -5,6 +5,12 @@
  */
 package forms;
 
+import camaraApi.Capi;
+import camaraApi.Deputado;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import org.json.JSONException;
+
 /**
  *
  * @author pedro
@@ -13,8 +19,11 @@ public class ListarPoliticos extends javax.swing.JFrame {
 
     /**
      * Creates new form ListarPoliticos
+     * @throws org.json.JSONException
      */
     public ListarPoliticos() {
+        
+        
         initComponents();
     }
 
@@ -217,6 +226,7 @@ public class ListarPoliticos extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+          
             public void run() {
                 new ListarPoliticos().setVisible(true);
             }

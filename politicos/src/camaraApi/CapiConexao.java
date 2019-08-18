@@ -2,38 +2,31 @@
 package camaraApi;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.ResponseHandler;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
-import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 
-public class camaraApi {
+public class CapiConexao {
     private static String URL_API = "https://dadosabertos.camara.leg.br/api/v2/deputados?ordem=ASC&ordenarPor=nome";
     
-    private static camaraApi instance;
+    private static CapiConexao instance;
     
     private CloseableHttpClient HTTPclient;
     
-    camaraApi(){
+    CapiConexao(){
         this.HTTPclient = HttpClients.createDefault();
     }
     
-    public static camaraApi getInstance() {
+    public static CapiConexao getInstance() {
         if(instance == null){
-            instance = new camaraApi();
+            instance = new CapiConexao();
         }
         return instance;
     }
@@ -42,7 +35,7 @@ public class camaraApi {
         String responseBody = "";
         String path = "";
         try{
-            HttpGet HttpGet = new HttpGet(camaraApi.URL_API+path);
+            HttpGet HttpGet = new HttpGet(CapiConexao.URL_API+path);
             
             //ResponseHandler -> serve para manipular a resposta vinda da api, mostrando-nos o resultado de nosso pedido(e não apenas o código dele)
             ResponseHandler<String> responseHandler = new ResponseHandler<String>(){
@@ -61,7 +54,7 @@ public class camaraApi {
             System.out.println("------------------------------------------------------------");
         }
         catch(IOException e){
-            Logger.getLogger(camaraApi.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(CapiConexao.class.getName()).log(Level.SEVERE, null, e);
         }
         return responseBody;
     }
