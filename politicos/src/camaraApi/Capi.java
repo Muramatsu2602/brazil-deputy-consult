@@ -57,4 +57,22 @@ public class Capi {
             
         return result;
     }////pesquisaDeputados
+    
+    public static List<Discurso> mostraDiscursos(String id) throws JSONException {
+        CapiConexao dados_camara;
+        dados_camara = new CapiConexao();
+        JSONObject my_obj = new JSONObject(dados_camara.getInfo(id+"/discursos?ordenarPor=dataHoraInicio&ordem=ASC"));
+        JSONArray array_deputados;
+        try{array_deputados = my_obj.getJSONArray("dados");}
+        catch(JSONException e){array_deputados = null; System.exit(1);}
+        JSONObject obj;
+        List<Discurso> dis = new ArrayList<>();
+
+        for(int x = 0; x<array_deputados.length(); x++){
+          //  System.out.println("(" + x + ") " + array_deputados.get(x));
+            obj = new JSONObject(array_deputados.get(x).toString());
+            dis.add(new Discurso(obj));
+        }//for
+        return dis;
+    }////mostraDiscursos
 }//executorTeste
