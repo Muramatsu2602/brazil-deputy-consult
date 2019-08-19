@@ -225,7 +225,7 @@ public class Politicos extends javax.swing.JFrame {
         FavoritosLayout.setHorizontalGroup(
             FavoritosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FavoritosLayout.createSequentialGroup()
-                .addContainerGap(316, Short.MAX_VALUE)
+                .addContainerGap(344, Short.MAX_VALUE)
                 .addComponent(jLabel4)
                 .addGap(300, 300, 300))
         );
@@ -309,7 +309,7 @@ public class Politicos extends javax.swing.JFrame {
         body_pesquisa.setLayout(body_pesquisaLayout);
         body_pesquisaLayout.setHorizontalGroup(
             body_pesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 855, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 883, Short.MAX_VALUE)
             .addGroup(body_pesquisaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(body_pesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -428,17 +428,18 @@ public class Politicos extends javax.swing.JFrame {
                                                 .addComponent(lblIL, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addGroup(body_mostradeputadoLayout.createSequentialGroup()
                                                 .addComponent(jLabel6)
-                                                .addGap(260, 260, 260)
+                                                .addGap(289, 289, 289)
                                                 .addComponent(lblEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addGroup(body_mostradeputadoLayout.createSequentialGroup()
-                                                .addGap(41, 41, 41)
+                                                .addComponent(jLabel12)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                                 .addComponent(lblCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addGroup(body_mostradeputadoLayout.createSequentialGroup()
                                                 .addComponent(jLabel9)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(lblCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                         .addGap(0, 0, Short.MAX_VALUE)))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 5, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, body_mostradeputadoLayout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(body_mostradeputadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -453,11 +454,6 @@ public class Politicos extends javax.swing.JFrame {
                         .addGap(29, 29, 29)))
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 487, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35))
-            .addGroup(body_mostradeputadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(body_mostradeputadoLayout.createSequentialGroup()
-                    .addGap(29, 29, 29)
-                    .addComponent(jLabel12)
-                    .addContainerGap(795, Short.MAX_VALUE)))
         );
         body_mostradeputadoLayout.setVerticalGroup(
             body_mostradeputadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -487,17 +483,14 @@ public class Politicos extends javax.swing.JFrame {
                             .addComponent(jLabel10)
                             .addComponent(lblPartido))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblCpf)
+                .addGroup(body_mostradeputadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCpf)
+                    .addComponent(jLabel12))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(body_mostradeputadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
                     .addComponent(lblIL))
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(body_mostradeputadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, body_mostradeputadoLayout.createSequentialGroup()
-                    .addContainerGap(288, Short.MAX_VALUE)
-                    .addComponent(jLabel12)
-                    .addGap(16, 16, 16)))
         );
 
         MostraDeputado.add(body_mostradeputado);
@@ -508,8 +501,8 @@ public class Politicos extends javax.swing.JFrame {
         main.setLayout(mainLayout);
         mainLayout.setHorizontalGroup(
             mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE, 855, Short.MAX_VALUE)
-            .addComponent(Principal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE, 883, Short.MAX_VALUE)
+            .addComponent(Principal, javax.swing.GroupLayout.DEFAULT_SIZE, 883, Short.MAX_VALUE)
         );
         mainLayout.setVerticalGroup(
             mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
