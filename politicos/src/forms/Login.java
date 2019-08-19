@@ -119,8 +119,6 @@ public class Login extends javax.swing.JFrame {
                 .addContainerGap(127, Short.MAX_VALUE))
         );
 
-        jLabel3.getAccessibleContext().setAccessibleName("Senha:");
-
         jLabel4.setText("imagem");
 
         javax.swing.GroupLayout panel_leftLayout = new javax.swing.GroupLayout(panel_left);
