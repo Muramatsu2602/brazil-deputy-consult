@@ -25,9 +25,9 @@ public class executorTeste {
         /*try (Scanner sc1 = new Scanner(System.in)) {
             pesquisa = sc1.next();
         }*/
-        List<Deputado> y = Capi.pesquisaDeputados("partido",pesquisa,Capi.mostraDeputados());
-        for(int x = 0; x < y.size() ; x++){
-            System.out.println(y.get(x).getNome() + "\n");
-        }
+        Deputado y = Capi.pesquisaDeputadoEspecifico("204536");
+        
+            System.out.println(y.getCpf() + "\n");
+        
 }////main
 }//executorTeste

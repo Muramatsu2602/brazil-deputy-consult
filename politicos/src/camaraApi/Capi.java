@@ -57,4 +57,33 @@ public class Capi {
             
         return result;
     }////pesquisaDeputados
+    
+    public static List<Discurso> mostraDiscursos(String id) throws JSONException {
+        CapiConexao dados_camara;
+        dados_camara = new CapiConexao();
+        JSONObject my_obj = new JSONObject(dados_camara.getInfo(id+"/discursos?ordenarPor=dataHoraInicio&ordem=ASC"));
+        JSONArray array_discursos;
+        try{array_discursos = my_obj.getJSONArray("dados");}
+        catch(JSONException e){array_discursos = null; System.exit(1);}
+        JSONObject obj;
+        List<Discurso> dis = new ArrayList<>();
+
+        for(int x = 0; x<array_discursos.length(); x++){
+          //  System.out.println("(" + x + ") " + array_deputados.get(x));
+            obj = new JSONObject(array_discursos.get(x).toString());
+            dis.add(new Discurso(obj));
+        }//for
+        return dis;
+    }////mostraDiscursos
+    
+     public static Deputado pesquisaDeputadoEspecifico(String id) throws JSONException{
+        CapiConexao dados_camara;
+        dados_camara = new CapiConexao();
+        JSONObject my_obj = new JSONObject(dados_camara.getInfo(id));
+        JSONObject deputado_info;
+        try{deputado_info = my_obj.getJSONObject("dados");}
+        catch(JSONException e){deputado_info = null; System.exit(1);}
+        Deputado dep = new Deputado(deputado_info);
+        return dep;
+    }////pesquisaDeputadoEspecifico
 }//executorTeste
