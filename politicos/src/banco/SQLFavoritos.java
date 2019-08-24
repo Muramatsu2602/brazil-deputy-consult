@@ -1,3 +1,5 @@
+package banco;
+
 // Importa os pacotes necessários
 
 import java.awt.*;
@@ -7,7 +9,7 @@ import javax.swing.table.*;//DefaulTableModel
 //vetor
 import java.util.*;
 
-public class SQLUsuarios extends JFrame implements ActionListener, MouseListener, KeyListener {
+public class SQLFavoritos extends JFrame implements ActionListener, MouseListener, KeyListener {
 
     // Bloco 1 - Objetos da Janela
     private DefaultTableModel modelo;
@@ -34,14 +36,14 @@ public class SQLUsuarios extends JFrame implements ActionListener, MouseListener
     //botao alterar dados
     private int linhaltera;
 
-    private BancoUsuarios banUsu;
+    private BancoFavoritos banFav;
 
     public void leGradeSql() {
         ArrayList vetor;
         vetor = new ArrayList();
         try {
-            banUsu.connect();///conecta
-            vetor = banUsu.pegadados();//pega todos os campos
+            banFav.connect();///conecta
+            vetor = banFav.pegadados();//pega todos os campos
             if (vetor.isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Tabela vazia tipo!!!");
                 return;
@@ -54,7 +56,7 @@ public class SQLUsuarios extends JFrame implements ActionListener, MouseListener
                     modelo.addRow(linha);
                 }//for
             }
-            banUsu.disconnect();//desconecta		
+            banFav.disconnect();//desconecta		
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(null,
                     "Erro na leitura tabela tipo:" + erro);
@@ -164,10 +166,10 @@ public class SQLUsuarios extends JFrame implements ActionListener, MouseListener
                     "Excluir linha:" + tabela.getValueAt(linex, 1),
                     "Excluindo", 0) == 0)//sim=0 nao=1
             {
-                banUsu.connect();
-                banUsu.setId("" + tabela.getValueAt(linex, 0));
-                banUsu.excluir();
-                banUsu.disconnect();
+                banFav.connect();
+                banFav.setId("" + tabela.getValueAt(linex, 0));
+                banFav.excluir();
+                banFav.disconnect();
                 modelo.removeRow(linex);
                 limpaTudo();
             }
@@ -184,20 +186,20 @@ public class SQLUsuarios extends JFrame implements ActionListener, MouseListener
 
             if (linhaltera == -1)///botao novo
             { //nova linha na grade
-                banUsu.connect();
-                banUsu.setTipo(cxtipo.getText());
-                banUsu.incluir();
-                //cxpktipo.setText(banUsu.retornaUltimo());
-                banUsu.disconnect();
+                banFav.connect();
+                banFav.setTipo(cxtipo.getText());
+                banFav.incluir();
+                //cxpktipo.setText(banFav.retornaUltimo());
+                banFav.disconnect();
                 String linha[] = {cxpktipo.getText(), cxtipo.getText()};
                 modelo.addRow(linha);//coloca na grade
             } else///botao alterar
             {
-                banUsu.connect();
-                banUsu.setId(cxpktipo.getText());
-                banUsu.setTipo(cxtipo.getText());
-                banUsu.alterar();
-                banUsu.disconnect();
+                banFav.connect();
+                banFav.setId(cxpktipo.getText());
+                banFav.setTipo(cxtipo.getText());
+                banFav.alterar();
+                banFav.disconnect();
                 tabela.setValueAt(cxpktipo.getText(), linhaltera, 0);
                 tabela.setValueAt(cxtipo.getText(), linhaltera, 1);
             }
@@ -212,7 +214,7 @@ public class SQLUsuarios extends JFrame implements ActionListener, MouseListener
     }///actionperformed	
 ///////////////////construtor
 
-    public SQLUsuarios() {
+    public SQLFavoritos() {
         super("Arquivo SQL- TABELA TIPO ALUNO");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         // Bloco 2 - Definição dos dados da Janela
@@ -309,13 +311,13 @@ public class SQLUsuarios extends JFrame implements ActionListener, MouseListener
 
         habilitaTudo(false, 1);//1=limpa campos
 
-        banUsu = new BancoUsuarios();
+        banFav = new BancoFavoritos();
         leGradeSql();
         show();
     }
     
     
      public static void main(String args[]) {
-        new SQLUsuarios();
+        new SQLFavoritos();
     }
 }

@@ -1,76 +1,88 @@
+package banco;
+
 
 import java.sql.*;
 import javax.swing.*;
 import java.util.*; //arraylist
 
-public class BancoFavoritos {
+public class BancoUsuarios {
 
     private int bdid;
     private String bdtipo;
-    private String bdNome;
+
     private String fsql;
     private String url, usuario, senha_banco, drive;
     private Connection con;
     private ResultSet rs;
     private PreparedStatement pstmt;
     private Statement stmt;
-
     // CAMPOS DA TABELA
-    private int id_favoritos;
-    private String nome;
-    private int usuario_id;
-    private int deputado_id;
-    private String partido;
-    private int status;
-    private String foto; // TESTAR PRIMEIRO SEM ELA
+    private Usuario user;
 
-    public BancoFavoritos() {
+    public BancoUsuarios(Usuario user) {
         bdid = 0;
         bdtipo = "";
         fsql = "";
         con = null;
         usuario = "postgres";
-        senha_banco = "a";
+        senha_banco = "postgres";
         drive = "org.postgresql.Driver";
-        url = "jdbc:postgresql://localhost:5432/politicos";
+        url = "jdbc:postgresql://localhost:5432/PoliticosJava";
+        this.user = user;
         //url="jdbc:postgresql://200.145.153.163:5432/banco73b2017";  
+    }
+
+    public BancoUsuarios() {
+        bdid = 0;
+        bdtipo = "";
+        fsql = "";
+        con = null;
+        usuario = "postgres";
+        senha_banco = "postgres";
+        drive = "org.postgresql.Driver";
+        url = "jdbc:postgresql://localhost:5432/PoliticosJava";
+        Usuario u = new Usuario();
+        this.user = u;
     }
 
     // METODOS BANCO - USuario
     public void incluir()//pkchave (chamada,turma)
     {
-        fsql = "INSERT INTO favoritos ("
+        fsql = "INSERT INTO usuarios ("
+                + "id_usuario,"
                 + "nome,"
-                + "usuario_id,"
-                + "deputado_id,"
-                + "partido,"
-                + "foto,"
-                + "status,"
-                + ")"
-                + "VALUES (?,?,?,?,?,?)";
+                + "cpf,"
+                //+ "dt_nasc,"
+                + "email,"
+                + "senha,"
+                + "ideologia,"
+                + "status) "
+                + "VALUES (?,?,?,?,?,?,?)";
         try {
             pstmt = con.prepareStatement(fsql);
-            // pstmt.setInt(1, this.id_favoritos);
-            pstmt.setString(1, this.nome);
-            pstmt.setInt(2, this.usuario_id);
-            pstmt.setInt(3, this.deputado_id);
-            pstmt.setString(4, this.partido);
-            pstmt.setString(5, this.foto);
-            pstmt.setInt(6, 1);
 
+            pstmt.setString(1, this.user.getIdUsuario());
+            pstmt.setString(2, this.user.getNome());
+            pstmt.setString(3, this.user.getCpf());
+            pstmt.setString(4, this.user.getEmail());
+            pstmt.setString(5, this.user.getSenha());
+            pstmt.setString(6, this.user.getIdeologia());
+            pstmt.setInt(7,this.user.getStatus());
+
+            //pstmt.setString(1, this.dt_nasc);
             pstmt.execute();
             pstmt.close();
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(null,
-                    "Erro na inclusao tabela Favoritos:" + erro);
+                    "Erro na inclusao tabela Usuarios:" + erro);
         }
     }
 
     public void excluir() {
-        fsql = "DELETE FROM favoritos WHERE id_favoritos=?";
+        fsql = "DELETE FROM usuarios where id_usuario=" + this.user.getIdUsuario() + ";";
         try {
             pstmt = con.prepareStatement(fsql);
-            pstmt.setInt(1, this.id_favoritos);
+            pstmt.setInt(1, bdid);
             pstmt.execute();
             pstmt.close();
         } catch (Exception erro) {
@@ -81,24 +93,30 @@ public class BancoFavoritos {
 
     // enviar id_usuario via parametro das funcoes?
     public void alterar() {
-        fsql = "UPDATE favoritos SET"
+        fsql = "UPDATE usuarios SET"
                 + " nome=?"
-                + ", partido=?"
-                + ", foto=?"
-                + "WHERE id_favoritos=? ;";
+                + ", cpf=?"
+                //+ ", dt_nasc=" + this.dt_nasc
+                + ", email=?"
+                + ", senha=?"
+                + ", ideologia=?"
+                + "where id=?;";
         try {
             pstmt = con.prepareStatement(fsql);
 
             //pstmt.setString(1,bdnome);
-            pstmt.setString(1, this.nome);
-            pstmt.setString(2, this.partido);
-            pstmt.setString(3, this.foto);
-            pstmt.setInt(4, this.id_favoritos);
+            pstmt.setString(1, this.user.getNome());
+            pstmt.setString(2, this.user.getCpf());
+            pstmt.setString(3, this.user.getEmail());
+            pstmt.setString(4, this.user.getSenha());
+            pstmt.setString(5, this.user.getIdeologia());
+            pstmt.setString(6, this.user.getIdUsuario());
+
             pstmt.execute();
             pstmt.close();
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(null,
-                    "Erro na alteracao tabela Favoritos:" + erro);
+                    "Erro na alteracao tabela Usuarios:" + erro);
         }
     }
 
@@ -122,41 +140,32 @@ public class BancoFavoritos {
         }
     } ///////////desconecta
 
-    public ArrayList pegadados() {
-        ArrayList dados;
-        dados = new ArrayList();
-        fsql = "SELECT * FROM favoritos WHERE status=1;";
+    public List<Usuario> pegaDados() {
+         List<Usuario> dados;
+        dados = new ArrayList<>();
+        fsql = "SELECT * FROM usuarios WHERE status=1;";
         try {
             stmt = con.createStatement();
             rs = stmt.executeQuery(fsql);
             while (rs.next()) {
                 /*
-                 bdid = rs.getInt("id_favoritos");
-                 bdtipo = rs.getString("tipo"); // ?? --> campo da tabela
+                 bdid = rs.getInt("id_usuario");
+                 bdtipo = rs.getString("tipo"); // ??
                  dados.add(bdid);
-                 dados.add(bdtipo);*/
-
-                this.id_favoritos = rs.getInt("id_favoritos");
-                this.nome = rs.getString("nome");
-                this.deputado_id = rs.getInt("deputado_id");
-                this.partido = rs.getString("partido");
-                this.foto = rs.getString("foto");
-                this.status = rs.getInt("status");
-
-                dados.add(id_favoritos);
-                dados.add(nome);
-                dados.add(deputado_id);
-                dados.add(partido);
-                dados.add(foto);
-                dados.add(status);
-
-                /*
-                 private String nome;
-                 private int usuario_id;
-                 private int deputado_id;
-                 private String partido;
-                 private String foto; // 
+                 dados.add(bdtipo);
                  */
+
+                this.user.setIdUsuario(rs.getString("id_usuario"));
+                this.user.setNome( rs.getString("nome"));
+                this.user.setCpf(rs.getString("cpf"));
+                this.user.setEmail(rs.getString("email"));
+                //this.dt_nasc = rs.getString("dt_nasc");
+                this.user.setSenha(rs.getString("senha"));
+                this.user.setIdeologia(rs.getString("ideologia"));
+                this.user.setStatus(rs.getInt("status"));
+                
+                dados.add(user);
+
             }///while	
             stmt.close();
         } catch (Exception erro) {
@@ -167,11 +176,11 @@ public class BancoFavoritos {
     }//pegadados
 
     public boolean procura(String id) {
-        fsql = "SELECT * FROM usuarios WHERE id_favoritos=? AND status=1;";
+        fsql = "SELECT * FROM usuarios WHERE id_usuario=? AND status=1;";
         try {
             pstmt = con.prepareStatement(fsql);
             int idd = Integer.parseInt(id);
-            pstmt.setInt(1,idd);
+            pstmt.setInt(1, idd);
             rs = pstmt.executeQuery();
             if (rs.next()) {
                 return true;//achou
@@ -179,7 +188,7 @@ public class BancoFavoritos {
             pstmt.close();
         } catch (Exception erroi) {
             JOptionPane.showMessageDialog(null,
-                    " Erro procura do id_favoritos (" + id + ")-->" + erroi);
+                    " Erro procura do id_usuario (" + id + ")-->" + erroi);
         }
         return false;
     }//procura 
@@ -208,14 +217,14 @@ public class BancoFavoritos {
      */
     public String retorna() {
         String volta = "";
-        fsql = "SELECT * FROM favoritos";
+        fsql = "SELECT * FROM usuarios WHERE status=1;";
         try {
             stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,
                     ResultSet.CONCUR_READ_ONLY);
             // executa
             rs = stmt.executeQuery(fsql);
             if (rs.last()) {
-                volta = rs.getString("id_favoritos");
+                volta = rs.getString("id_usuario");
                 //JOptionPane.showMessageDialog(null,"ultimo"+volta);
 
                 return volta;
@@ -253,53 +262,5 @@ public class BancoFavoritos {
 
     public String getTipo() {
         return bdtipo;
-    }
-
-    public int getId_favoritos() {
-        return id_favoritos;
-    }
-
-    public void setId_favoritos(int id_favoritos) {
-        this.id_favoritos = id_favoritos;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public int getUsuario_id() {
-        return usuario_id;
-    }
-
-    public void setUsuario_id(int usuario_id) {
-        this.usuario_id = usuario_id;
-    }
-
-    public int getDeputado_id() {
-        return deputado_id;
-    }
-
-    public void setDeputado_id(int deputado_id) {
-        this.deputado_id = deputado_id;
-    }
-
-    public String getPartido() {
-        return partido;
-    }
-
-    public void setPartido(String partido) {
-        this.partido = partido;
-    }
-
-    public String getFoto() {
-        return foto;
-    }
-
-    public void setFoto(String foto) {
-        this.foto = foto;
     }
 }// CLASS

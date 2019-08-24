@@ -13,6 +13,7 @@
 package camaraApi;
  
 //import java.io.IOException;
+import banco.BancoUsuarios;
 import org.json.JSONException;
 import java.util.Scanner;
 import java.util.List;
@@ -25,6 +26,9 @@ public class executorTeste {
         /*try (Scanner sc1 = new Scanner(System.in)) {
             pesquisa = sc1.next();
         }*/
+    
+        
+        
         Deputado y = Capi.pesquisaDeputadoEspecifico("204536");
         
             System.out.println(y.getCpf() + "\n");

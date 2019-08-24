@@ -1,13 +1,16 @@
+package banco;
+
 // Importa os pacotes necessários
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.table.*;//DefaulTableModel
 //vetor
-import java.util.*;
+import java.util.List;
 
-public class SQLFavoritos extends JFrame implements ActionListener, MouseListener, KeyListener {
+public class SQLUsuarios extends JFrame implements ActionListener, MouseListener, KeyListener {
 
     // Bloco 1 - Objetos da Janela
     private DefaultTableModel modelo;
@@ -34,14 +37,13 @@ public class SQLFavoritos extends JFrame implements ActionListener, MouseListene
     //botao alterar dados
     private int linhaltera;
 
-    private BancoFavoritos banFav;
+    private BancoUsuarios banUsu;
 
     public void leGradeSql() {
-        ArrayList vetor;
-        vetor = new ArrayList();
+      List<Usuario> vetor = new ArrayList<>();
         try {
-            banFav.connect();///conecta
-            vetor = banFav.pegadados();//pega todos os campos
+            banUsu.connect();///conecta
+            vetor = banUsu.pegaDados();//pega todos os campos
             if (vetor.isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Tabela vazia tipo!!!");
                 return;
@@ -54,7 +56,7 @@ public class SQLFavoritos extends JFrame implements ActionListener, MouseListene
                     modelo.addRow(linha);
                 }//for
             }
-            banFav.disconnect();//desconecta		
+            banUsu.disconnect();//desconecta		
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(null,
                     "Erro na leitura tabela tipo:" + erro);
@@ -164,10 +166,10 @@ public class SQLFavoritos extends JFrame implements ActionListener, MouseListene
                     "Excluir linha:" + tabela.getValueAt(linex, 1),
                     "Excluindo", 0) == 0)//sim=0 nao=1
             {
-                banFav.connect();
-                banFav.setId("" + tabela.getValueAt(linex, 0));
-                banFav.excluir();
-                banFav.disconnect();
+                banUsu.connect();
+                banUsu.setId("" + tabela.getValueAt(linex, 0));
+                banUsu.excluir();
+                banUsu.disconnect();
                 modelo.removeRow(linex);
                 limpaTudo();
             }
@@ -184,20 +186,20 @@ public class SQLFavoritos extends JFrame implements ActionListener, MouseListene
 
             if (linhaltera == -1)///botao novo
             { //nova linha na grade
-                banFav.connect();
-                banFav.setTipo(cxtipo.getText());
-                banFav.incluir();
-                //cxpktipo.setText(banFav.retornaUltimo());
-                banFav.disconnect();
+                banUsu.connect();
+                banUsu.setTipo(cxtipo.getText());
+                banUsu.incluir();
+                //cxpktipo.setText(banUsu.retornaUltimo());
+                banUsu.disconnect();
                 String linha[] = {cxpktipo.getText(), cxtipo.getText()};
                 modelo.addRow(linha);//coloca na grade
             } else///botao alterar
             {
-                banFav.connect();
-                banFav.setId(cxpktipo.getText());
-                banFav.setTipo(cxtipo.getText());
-                banFav.alterar();
-                banFav.disconnect();
+                banUsu.connect();
+                banUsu.setId(cxpktipo.getText());
+                banUsu.setTipo(cxtipo.getText());
+                banUsu.alterar();
+                banUsu.disconnect();
                 tabela.setValueAt(cxpktipo.getText(), linhaltera, 0);
                 tabela.setValueAt(cxtipo.getText(), linhaltera, 1);
             }
@@ -212,7 +214,7 @@ public class SQLFavoritos extends JFrame implements ActionListener, MouseListene
     }///actionperformed	
 ///////////////////construtor
 
-    public SQLFavoritos() {
+    public SQLUsuarios() {
         super("Arquivo SQL- TABELA TIPO ALUNO");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         // Bloco 2 - Definição dos dados da Janela
@@ -309,13 +311,13 @@ public class SQLFavoritos extends JFrame implements ActionListener, MouseListene
 
         habilitaTudo(false, 1);//1=limpa campos
 
-        banFav = new BancoFavoritos();
+        banUsu = new BancoUsuarios();
         leGradeSql();
         show();
     }
     
     
      public static void main(String args[]) {
-        new SQLFavoritos();
+        new SQLUsuarios();
     }
 }
