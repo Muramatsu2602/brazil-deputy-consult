@@ -20,7 +20,7 @@ public class Usuario {
     private String ideologia;
     private int status;
 
-    Usuario() {
+    public Usuario() {
         this.id_usuario = "";
         this.nome = "";
         this.cpf = "";
@@ -30,7 +30,7 @@ public class Usuario {
         this.status = 0;
     }
 
-    Usuario(String id_usuario, String nome, String cpf, String email, String senha, String ideologia, boolean status) {
+    public Usuario(String id_usuario, String nome, String cpf, String email, String senha, String ideologia, int status) {
 
         this.id_usuario = id_usuario;
         this.nome = nome;

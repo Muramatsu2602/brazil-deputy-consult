@@ -4,6 +4,7 @@ package banco;
 import java.sql.*;
 import javax.swing.*;
 import java.util.*; //arraylist
+import java.util.Random;
 
 public class BancoUsuarios {
 
@@ -48,6 +49,7 @@ public class BancoUsuarios {
     // METODOS BANCO - USuario
     public void incluir()//pkchave (chamada,turma)
     {
+        
         fsql = "INSERT INTO usuarios ("
                 + "id_usuario,"
                 + "nome,"
@@ -60,7 +62,8 @@ public class BancoUsuarios {
                 + "VALUES (?,?,?,?,?,?,?)";
         try {
             pstmt = con.prepareStatement(fsql);
-
+            
+            
             pstmt.setString(1, this.user.getIdUsuario());
             pstmt.setString(2, this.user.getNome());
             pstmt.setString(3, this.user.getCpf());
@@ -93,6 +96,7 @@ public class BancoUsuarios {
 
     // enviar id_usuario via parametro das funcoes?
     public void alterar() {
+      
         fsql = "UPDATE usuarios SET"
                 + " nome=?"
                 + ", cpf=?"
@@ -105,6 +109,7 @@ public class BancoUsuarios {
             pstmt = con.prepareStatement(fsql);
 
             //pstmt.setString(1,bdnome);
+           
             pstmt.setString(1, this.user.getNome());
             pstmt.setString(2, this.user.getCpf());
             pstmt.setString(3, this.user.getEmail());

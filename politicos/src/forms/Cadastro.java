@@ -1,16 +1,19 @@
 package forms;
 
+import banco.BancoUsuarios;
+import banco.Usuario;
+import java.util.List;
 
 /**
  *
  * @author lucas
  */
-public class Login extends javax.swing.JFrame {
+public class Cadastro extends javax.swing.JFrame {
 
     /**
      * Creates new form Home15
      */
-    public Login() {
+    public Cadastro() {
         initComponents();
     }
 
@@ -36,7 +39,13 @@ public class Login extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txtNome = new javax.swing.JTextField();
         txtSenha = new javax.swing.JTextField();
-        btnLogin = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        txtEmail = new javax.swing.JTextField();
+        txtCPF = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        txtIdeologia = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
         btnCadastro = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -131,21 +140,40 @@ public class Login extends javax.swing.JFrame {
         txtSenha.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 153, 153)));
         txtSenha.setCaretColor(new java.awt.Color(255, 255, 255));
 
-        btnLogin.setBackground(new java.awt.Color(0, 153, 153));
-        btnLogin.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        btnLogin.setForeground(new java.awt.Color(255, 255, 255));
-        btnLogin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnLogin.setText("Login");
-        btnLogin.setOpaque(true);
-        btnLogin.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnLoginMouseClicked(evt);
-            }
-        });
+        jLabel5.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
+        jLabel5.setText("Email:");
 
-        btnCadastro.setBackground(new java.awt.Color(255, 255, 255));
-        btnCadastro.setFont(new java.awt.Font("Segoe UI Light", 0, 12)); // NOI18N
-        btnCadastro.setText("Não tem conta? Se fodeu!");
+        txtEmail.setBackground(new java.awt.Color(240, 240, 240));
+        txtEmail.setFont(new java.awt.Font("Raleway Light", 0, 16)); // NOI18N
+        txtEmail.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 153, 153)));
+        txtEmail.setCaretColor(new java.awt.Color(255, 255, 255));
+
+        txtCPF.setBackground(new java.awt.Color(240, 240, 240));
+        txtCPF.setFont(new java.awt.Font("Raleway Light", 0, 16)); // NOI18N
+        txtCPF.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 153, 153)));
+        txtCPF.setCaretColor(new java.awt.Color(255, 255, 255));
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
+        jLabel6.setText("CPF:");
+
+        txtIdeologia.setBackground(new java.awt.Color(240, 240, 240));
+        txtIdeologia.setFont(new java.awt.Font("Raleway Light", 0, 16)); // NOI18N
+        txtIdeologia.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 153, 153)));
+        txtIdeologia.setCaretColor(new java.awt.Color(255, 255, 255));
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
+        jLabel7.setText("Ideologia:");
+
+        jLabel8.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel8.setFont(new java.awt.Font("Segoe UI Light", 1, 24)); // NOI18N
+        jLabel8.setText("Cadastro");
+
+        btnCadastro.setBackground(new java.awt.Color(0, 153, 153));
+        btnCadastro.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        btnCadastro.setForeground(new java.awt.Color(255, 255, 255));
+        btnCadastro.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnCadastro.setText("Cadastrar");
+        btnCadastro.setOpaque(true);
         btnCadastro.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnCadastroMouseClicked(evt);
@@ -157,41 +185,65 @@ public class Login extends javax.swing.JFrame {
         body_mostradeputado2Layout.setHorizontalGroup(
             body_mostradeputado2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(body_mostradeputado2Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(body_mostradeputado2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(body_mostradeputado2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(body_mostradeputado2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, body_mostradeputado2Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, body_mostradeputado2Layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtSenha))))
+                        .addComponent(jLabel6)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtIdeologia))
                     .addGroup(body_mostradeputado2Layout.createSequentialGroup()
-                        .addGap(97, 97, 97)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtEmail))
+                    .addGroup(body_mostradeputado2Layout.createSequentialGroup()
                         .addGroup(body_mostradeputado2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnCadastro)
-                            .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(body_mostradeputado2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, body_mostradeputado2Layout.createSequentialGroup()
+                                    .addComponent(jLabel2)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, body_mostradeputado2Layout.createSequentialGroup()
+                                    .addComponent(jLabel4)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(txtSenha)))
+                            .addComponent(jLabel8))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, body_mostradeputado2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(97, 97, 97))
         );
         body_mostradeputado2Layout.setVerticalGroup(
             body_mostradeputado2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(body_mostradeputado2Layout.createSequentialGroup()
-                .addGap(55, 55, 55)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, body_mostradeputado2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel8)
+                .addGap(18, 18, 18)
                 .addGroup(body_mostradeputado2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(13, 13, 13)
                 .addGroup(body_mostradeputado2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
-                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnCadastro)
-                .addGap(31, 31, 31))
+                .addGap(29, 29, 29)
+                .addGroup(body_mostradeputado2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7)
+                    .addComponent(txtIdeologia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(body_mostradeputado2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addComponent(btnCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21))
         );
 
         Login.add(body_mostradeputado2);
@@ -249,23 +301,44 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel3MouseClicked
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-  
+
     }//GEN-LAST:event_formWindowOpened
 
-    private void btnLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseClicked
-        new Politicos().setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btnLoginMouseClicked
-
     private void btnCadastroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCadastroMouseClicked
-        new Cadastro().setVisible(true);
+
+        String id = "0";
+        int rand;
+        String nome = txtNome.getText();
+        String cpf = txtCPF.getText();
+        String email = txtEmail.getText();
+        String senha = txtSenha.getText();
+        String ideologia = txtIdeologia.getText();
+        
+        BancoUsuarios banco = new BancoUsuarios();
+        List<Usuario> users = banco.pegaDados();
+        
+        int x = 0;
+        while (x < users.size()) {
+            if (id.equals(users.get(x).getIdUsuario())) {
+                rand = ((int) (Math.random() * 1000000 + 1));
+                id = Integer.toString(rand);
+                x = 0;
+            }
+            x++;
+        }
+        Usuario user = new Usuario(id, nome, cpf, email, senha, ideologia, 1);
+        BancoUsuarios usuario = new BancoUsuarios(user);
+
+        usuario.connect();
+        usuario.incluir();
+        usuario.disconnect();
+        
+        new Politicos().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnCadastroMouseClicked
 
     // troca a cor dos botões
-  
     //-----------End --------
-
     /**
      * @param args the command line arguments
      */
@@ -298,7 +371,7 @@ public class Login extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Login().setVisible(true);
+                new Cadastro().setVisible(true);
 
             }
         });
@@ -310,15 +383,21 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPanel Principal;
     private javax.swing.JPanel body_mostradeputado2;
     private javax.swing.JLabel btnCadastro;
-    private javax.swing.JLabel btnLogin;
     private javax.swing.JPanel header;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel main;
     private javax.swing.ButtonGroup radPesquisa;
     private javax.swing.JLabel subtitulo;
     private javax.swing.JLabel titulo;
+    private javax.swing.JTextField txtCPF;
+    private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtIdeologia;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtSenha;
     // End of variables declaration//GEN-END:variables
