@@ -35,9 +35,9 @@ public class Login extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtNome = new javax.swing.JTextField();
-        txtSenha = new javax.swing.JTextField();
         btnLogin = new javax.swing.JLabel();
         btnCadastro = new javax.swing.JLabel();
+        txtSenha = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
@@ -126,11 +126,6 @@ public class Login extends javax.swing.JFrame {
         txtNome.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 153, 153)));
         txtNome.setSelectionColor(new java.awt.Color(0, 153, 153));
 
-        txtSenha.setBackground(new java.awt.Color(240, 240, 240));
-        txtSenha.setFont(new java.awt.Font("Raleway Light", 0, 16)); // NOI18N
-        txtSenha.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 153, 153)));
-        txtSenha.setCaretColor(new java.awt.Color(255, 255, 255));
-
         btnLogin.setBackground(new java.awt.Color(0, 153, 153));
         btnLogin.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         btnLogin.setForeground(new java.awt.Color(255, 255, 255));
@@ -152,6 +147,11 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        txtSenha.setBackground(new java.awt.Color(240, 240, 240));
+        txtSenha.setFont(new java.awt.Font("Raleway Light", 0, 16)); // NOI18N
+        txtSenha.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 153, 153)));
+        txtSenha.setSelectionColor(new java.awt.Color(0, 153, 153));
+
         javax.swing.GroupLayout body_mostradeputado2Layout = new javax.swing.GroupLayout(body_mostradeputado2);
         body_mostradeputado2.setLayout(body_mostradeputado2Layout);
         body_mostradeputado2Layout.setHorizontalGroup(
@@ -160,7 +160,7 @@ public class Login extends javax.swing.JFrame {
                 .addGroup(body_mostradeputado2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(body_mostradeputado2Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(body_mostradeputado2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(body_mostradeputado2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, body_mostradeputado2Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -168,7 +168,7 @@ public class Login extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, body_mostradeputado2Layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtSenha))))
+                                .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(body_mostradeputado2Layout.createSequentialGroup()
                         .addGap(97, 97, 97)
                         .addGroup(body_mostradeputado2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
