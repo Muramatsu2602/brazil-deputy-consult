@@ -2,7 +2,10 @@ package forms;
 
 import banco.BancoUsuarios;
 import banco.Usuario;
+import java.io.IOException;
+import java.security.SecureRandom;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -32,6 +35,7 @@ public class Cadastro extends javax.swing.JFrame {
         subtitulo = new javax.swing.JLabel();
         titulo = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        btnVoltar = new javax.swing.JLabel();
         Principal = new javax.swing.JPanel();
         Login = new javax.swing.JPanel();
         body_mostradeputado2 = new javax.swing.JPanel();
@@ -90,6 +94,18 @@ public class Cadastro extends javax.swing.JFrame {
             }
         });
 
+        btnVoltar.setBackground(new java.awt.Color(0, 153, 153));
+        btnVoltar.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        btnVoltar.setForeground(new java.awt.Color(255, 255, 255));
+        btnVoltar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnVoltar.setText("<");
+        btnVoltar.setOpaque(true);
+        btnVoltar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnVoltarMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout headerLayout = new javax.swing.GroupLayout(header);
         header.setLayout(headerLayout);
         headerLayout.setHorizontalGroup(
@@ -100,6 +116,8 @@ public class Cadastro extends javax.swing.JFrame {
                     .addComponent(subtitulo)
                     .addComponent(titulo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         headerLayout.setVerticalGroup(
@@ -107,7 +125,9 @@ public class Cadastro extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, headerLayout.createSequentialGroup()
                 .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(headerLayout.createSequentialGroup()
-                        .addComponent(jLabel3)
+                        .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(btnVoltar))
                         .addGap(27, 27, 27))
                     .addComponent(titulo, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(6, 6, 6)
@@ -307,37 +327,69 @@ public class Cadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void btnCadastroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCadastroMouseClicked
+        boolean certo = true;
+        try {
+            String id = "0";
+            String nome = txtNome.getText();
+            String cpf = txtCPF.getText();
+            String email = txtEmail.getText();
+            String senha = txtSenha.getText();
+            String ideologia = txtIdeologia.getText();
 
-        String id = "0";
-        int rand;
-        String nome = txtNome.getText();
-        String cpf = txtCPF.getText();
-        String email = txtEmail.getText();
-        String senha = txtSenha.getText();
-        String ideologia = txtIdeologia.getText();
-        
-        BancoUsuarios banco = new BancoUsuarios();
-        List<Usuario> users = banco.pegaDados();
-        
-        int x = 0;
-        while (x < users.size()) {
-            if (id.equals(users.get(x).getIdUsuario())) {
-                rand = ((int) (Math.random() * 1000000 + 1));
-                id = Integer.toString(rand);
-                x = 0;
+          
+                id = randomico(12);
+            
+
+            Usuario user = new Usuario(id, nome, cpf, email, senha, ideologia, 1);
+
+            BancoUsuarios usuario = new BancoUsuarios(user);
+
+            usuario.connect();
+            usuario.incluir();
+            usuario.disconnect();
+        } catch (Exception erro) {
+            certo = false;
+            JOptionPane.showMessageDialog(null,
+                    "Um erro ocorreu: " + erro);
+        } finally {
+            if (certo) {
+                new Politicos().setVisible(true);
+                this.dispose();
             }
-            x++;
         }
-        Usuario user = new Usuario(id, nome, cpf, email, senha, ideologia, 1);
-        BancoUsuarios usuario = new BancoUsuarios(user);
-
-        usuario.connect();
-        usuario.incluir();
-        usuario.disconnect();
-        
-        new Politicos().setVisible(true);
-        this.dispose();
     }//GEN-LAST:event_btnCadastroMouseClicked
+
+    private void btnVoltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVoltarMouseClicked
+        new Login().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnVoltarMouseClicked
+
+    public static String randomico(int length) {
+        String CHAR_LOWER = "abcdefghijklmnopqrstuvwxyz";
+        String CHAR_UPPER = CHAR_LOWER.toUpperCase();
+        String NUMBER = "0123456789";
+
+        String DATA_FOR_RANDOM_STRING = CHAR_LOWER + CHAR_UPPER + NUMBER;
+        SecureRandom random = new SecureRandom();
+        if (length < 1) {
+            throw new IllegalArgumentException();
+        }
+
+        StringBuilder sb = new StringBuilder(length);
+        for (int i = 0; i < length; i++) {
+
+            // 0-62 (exclusive), random returns 0-61
+            int rndCharAt = random.nextInt(DATA_FOR_RANDOM_STRING.length());
+            char rndChar = DATA_FOR_RANDOM_STRING.charAt(rndCharAt);
+
+            // debug
+            // System.out.format("%d\t:\t%c%n", rndCharAt, rndChar);
+            sb.append(rndChar);
+
+        }
+
+        return sb.toString();
+    }
 
     // troca a cor dos botões
     //-----------End --------
@@ -385,6 +437,7 @@ public class Cadastro extends javax.swing.JFrame {
     private javax.swing.JPanel Principal;
     private javax.swing.JPanel body_mostradeputado2;
     private javax.swing.JLabel btnCadastro;
+    private javax.swing.JLabel btnVoltar;
     private javax.swing.JPanel header;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

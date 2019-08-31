@@ -1,5 +1,9 @@
 package forms;
 
+import banco.BancoUsuarios;
+import banco.Usuario;
+import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -249,12 +253,37 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel3MouseClicked
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-  
+
     }//GEN-LAST:event_formWindowOpened
 
     private void btnLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseClicked
-        new Politicos().setVisible(true);
-        this.dispose();
+
+        try {
+
+            BancoUsuarios banco = new BancoUsuarios();
+            banco.connect();
+            List<Usuario> users = banco.pegaDados();
+            String nome = txtNome.getText();
+            String senha = txtSenha.getText();
+
+            for (int x = 0; x < users.size(); x++) {
+                if (nome.equals(users.get(x).getNome())) {
+
+                    if (senha.equals(users.get(x).getSenha())) {
+                        
+                        new Politicos().setVisible(true);
+                        this.dispose();
+                        break;
+                    }
+                }
+            }
+            banco.disconnect();
+
+        } catch (Exception erro) {
+
+            JOptionPane.showMessageDialog(null,
+                    "Um erro ocorreu: " + erro);
+        }
     }//GEN-LAST:event_btnLoginMouseClicked
 
     private void btnCadastroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCadastroMouseClicked
@@ -263,9 +292,7 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCadastroMouseClicked
 
     // troca a cor dos botões
-  
     //-----------End --------
-
     /**
      * @param args the command line arguments
      */
