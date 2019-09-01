@@ -4,12 +4,12 @@ package banco;
 import java.sql.*;
 import javax.swing.*;
 import java.util.*; //arraylist
+import java.util.Random;
 
 public class BancoUsuarios {
 
     private int bdid;
     private String bdtipo;
-
     private String fsql;
     private String url, usuario, senha_banco, drive;
     private Connection con;
@@ -29,6 +29,7 @@ public class BancoUsuarios {
         drive = "org.postgresql.Driver";
         url = "jdbc:postgresql://localhost:5432/PoliticosJava";
         this.user = user;
+       
         //url="jdbc:postgresql://200.145.153.163:5432/banco73b2017";  
     }
 
@@ -48,6 +49,7 @@ public class BancoUsuarios {
     // METODOS BANCO - USuario
     public void incluir()//pkchave (chamada,turma)
     {
+        
         fsql = "INSERT INTO usuarios ("
                 + "id_usuario,"
                 + "nome,"
@@ -60,7 +62,8 @@ public class BancoUsuarios {
                 + "VALUES (?,?,?,?,?,?,?)";
         try {
             pstmt = con.prepareStatement(fsql);
-
+            
+            
             pstmt.setString(1, this.user.getIdUsuario());
             pstmt.setString(2, this.user.getNome());
             pstmt.setString(3, this.user.getCpf());
@@ -93,6 +96,7 @@ public class BancoUsuarios {
 
     // enviar id_usuario via parametro das funcoes?
     public void alterar() {
+      
         fsql = "UPDATE usuarios SET"
                 + " nome=?"
                 + ", cpf=?"
@@ -105,6 +109,7 @@ public class BancoUsuarios {
             pstmt = con.prepareStatement(fsql);
 
             //pstmt.setString(1,bdnome);
+           
             pstmt.setString(1, this.user.getNome());
             pstmt.setString(2, this.user.getCpf());
             pstmt.setString(3, this.user.getEmail());
@@ -141,12 +146,14 @@ public class BancoUsuarios {
     } ///////////desconecta
 
     public List<Usuario> pegaDados() {
-         List<Usuario> dados;
-        dados = new ArrayList<>();
+        
+     List<Usuario> dados = new ArrayList<>();
+     System.out.println(dados);
         fsql = "SELECT * FROM usuarios WHERE status=1;";
         try {
-            stmt = con.createStatement();
-            rs = stmt.executeQuery(fsql);
+           this.stmt = con.createStatement();
+            this.rs = stmt.executeQuery(fsql);
+            int x = 0;
             while (rs.next()) {
                 /*
                  bdid = rs.getInt("id_usuario");
@@ -163,19 +170,24 @@ public class BancoUsuarios {
                 this.user.setSenha(rs.getString("senha"));
                 this.user.setIdeologia(rs.getString("ideologia"));
                 this.user.setStatus(rs.getInt("status"));
+                dados.add(this.user);
                 
-                dados.add(user);
-
-            }///while	
+                this.user = null;
+                this.user = new Usuario();
+                x++;
+            }///while
             stmt.close();
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(null,
                     "Erro na leitura:" + erro);
         }
-        return dados;
+       
+     
+       return dados;
     }//pegadados
 
-    public boolean procura(String id) {
+    public Usuario procura(String id) {
+        
         fsql = "SELECT * FROM usuarios WHERE id_usuario=? AND status=1;";
         try {
             pstmt = con.prepareStatement(fsql);
@@ -183,14 +195,25 @@ public class BancoUsuarios {
             pstmt.setInt(1, idd);
             rs = pstmt.executeQuery();
             if (rs.next()) {
-                return true;//achou
+                this.user = null;
+                this.user = new Usuario();
+                
+                 this.user.setIdUsuario(rs.getString("id_usuario"));
+                this.user.setNome( rs.getString("nome"));
+                this.user.setCpf(rs.getString("cpf"));
+                this.user.setEmail(rs.getString("email"));
+                this.user.setSenha(rs.getString("senha"));
+                this.user.setIdeologia(rs.getString("ideologia"));
+                this.user.setStatus(rs.getInt("status"));
+                
+                return this.user;
             }
             pstmt.close();
         } catch (Exception erroi) {
             JOptionPane.showMessageDialog(null,
                     " Erro procura do id_usuario (" + id + ")-->" + erroi);
         }
-        return false;
+        return null;
     }//procura 
 
     /*

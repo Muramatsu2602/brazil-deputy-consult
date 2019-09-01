@@ -30,6 +30,7 @@ public class Politicos extends javax.swing.JFrame {
      */
     public Politicos() {
         initComponents();
+        imprimirMinhaConta();
     }
 
     /**
@@ -48,16 +49,38 @@ public class Politicos extends javax.swing.JFrame {
         titulo = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         btnPesquisa = new javax.swing.JLabel();
-        btnFavoritos = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         btnVoltar = new javax.swing.JLabel();
         btnMinhaConta = new javax.swing.JLabel();
         btnUsuarios = new javax.swing.JLabel();
         Principal = new javax.swing.JPanel();
-        Favoritos = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        MinhaConta = new javax.swing.JPanel();
-        jLabel13 = new javax.swing.JLabel();
+        Usuarios = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tblUsuario = new javax.swing.JTable();
+        jTextField3 = new javax.swing.JTextField();
+        btnPesquisarUsuario = new javax.swing.JButton();
+        MostraUsuario = new javax.swing.JPanel();
+        body_mostradeputado4 = new javax.swing.JPanel();
+        jLabel35 = new javax.swing.JLabel();
+        lblEmail4 = new javax.swing.JLabel();
+        lblIL4 = new javax.swing.JLabel();
+        jLabel36 = new javax.swing.JLabel();
+        jLabel37 = new javax.swing.JLabel();
+        jLabel38 = new javax.swing.JLabel();
+        txtNome10 = new javax.swing.JTextField();
+        jLabel39 = new javax.swing.JLabel();
+        jLabel40 = new javax.swing.JLabel();
+        txtNome11 = new javax.swing.JTextField();
+        txtNome12 = new javax.swing.JTextField();
+        txtNome13 = new javax.swing.JTextField();
+        txtNome14 = new javax.swing.JTextField();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        tblDeputado3 = new javax.swing.JTable();
+        btnPesquisarDeputado3 = new javax.swing.JButton();
+        jTextField5 = new javax.swing.JTextField();
+        btnLogin4 = new javax.swing.JLabel();
+        btnLogin5 = new javax.swing.JLabel();
+        jLabel41 = new javax.swing.JLabel();
         MostraDeputado = new javax.swing.JPanel();
         body_mostradeputado = new javax.swing.JPanel();
         lblImg = new javax.swing.JLabel();
@@ -77,6 +100,7 @@ public class Politicos extends javax.swing.JFrame {
         lblPartido = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         lblEscolaridade = new javax.swing.JLabel();
+        btnFavoritar = new javax.swing.JLabel();
         Deputados = new javax.swing.JPanel();
         body_pesquisa = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -86,30 +110,28 @@ public class Politicos extends javax.swing.JFrame {
         jRadioButton3 = new javax.swing.JRadioButton();
         jTextField1 = new javax.swing.JTextField();
         btnPesquisarDeputado = new javax.swing.JButton();
-        Usuarios = new javax.swing.JPanel();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        tblUsuario = new javax.swing.JTable();
-        jTextField3 = new javax.swing.JTextField();
-        btnPesquisarUsuario = new javax.swing.JButton();
-        MostraUsuario = new javax.swing.JPanel();
-        body_mostradeputado2 = new javax.swing.JPanel();
-        lblImg2 = new javax.swing.JLabel();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        txtDiscurso2 = new javax.swing.JTextArea();
-        lblUf2 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
-        lblEmail2 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
-        lblCpf2 = new javax.swing.JLabel();
-        lblIL2 = new javax.swing.JLabel();
-        jLabel23 = new javax.swing.JLabel();
-        jLabel24 = new javax.swing.JLabel();
-        jLabel25 = new javax.swing.JLabel();
-        lblCidade2 = new javax.swing.JLabel();
-        lblPartido2 = new javax.swing.JLabel();
-        jLabel26 = new javax.swing.JLabel();
-        lblEscolaridade2 = new javax.swing.JLabel();
+        MinhaConta = new javax.swing.JPanel();
+        body_mostradeputado5 = new javax.swing.JPanel();
+        jLabel42 = new javax.swing.JLabel();
+        lblEmail5 = new javax.swing.JLabel();
+        lblIL5 = new javax.swing.JLabel();
+        jLabel43 = new javax.swing.JLabel();
+        jLabel44 = new javax.swing.JLabel();
+        jLabel45 = new javax.swing.JLabel();
+        txtEmail = new javax.swing.JTextField();
+        jLabel46 = new javax.swing.JLabel();
+        jLabel47 = new javax.swing.JLabel();
+        txtNome = new javax.swing.JTextField();
+        txtSenha = new javax.swing.JTextField();
+        txtIdeologia = new javax.swing.JTextField();
+        txtCPF = new javax.swing.JTextField();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        tblDeputado4 = new javax.swing.JTable();
+        btnPesquisarDeputado4 = new javax.swing.JButton();
+        jTextField6 = new javax.swing.JTextField();
+        btnLogin6 = new javax.swing.JLabel();
+        btnLogin7 = new javax.swing.JLabel();
+        jLabel48 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
@@ -162,18 +184,6 @@ public class Politicos extends javax.swing.JFrame {
         btnPesquisa.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnPesquisaMouseClicked(evt);
-            }
-        });
-
-        btnFavoritos.setBackground(new java.awt.Color(0, 153, 153));
-        btnFavoritos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnFavoritos.setForeground(new java.awt.Color(255, 255, 255));
-        btnFavoritos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnFavoritos.setText("Políticos Favoritos");
-        btnFavoritos.setOpaque(true);
-        btnFavoritos.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnFavoritosMouseClicked(evt);
             }
         });
 
@@ -243,9 +253,7 @@ public class Politicos extends javax.swing.JFrame {
                         .addComponent(btnUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnFavoritos, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18))))
+                        .addContainerGap())))
         );
         headerLayout.setVerticalGroup(
             headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -268,7 +276,6 @@ public class Politicos extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnFavoritos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnMinhaConta, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(36, 36, 36))))
@@ -278,55 +285,337 @@ public class Politicos extends javax.swing.JFrame {
 
         Principal.setLayout(new java.awt.CardLayout());
 
-        Favoritos.setBackground(new java.awt.Color(255, 255, 255));
+        Usuarios.setBackground(new java.awt.Color(243, 243, 243));
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 153, 153));
-        jLabel4.setText("Conexao com o banco");
+        jScrollPane4.setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane4.setBorder(null);
 
-        javax.swing.GroupLayout FavoritosLayout = new javax.swing.GroupLayout(Favoritos);
-        Favoritos.setLayout(FavoritosLayout);
-        FavoritosLayout.setHorizontalGroup(
-            FavoritosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FavoritosLayout.createSequentialGroup()
-                .addContainerGap(404, Short.MAX_VALUE)
-                .addComponent(jLabel4)
-                .addGap(300, 300, 300))
+        tblUsuario.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        tblUsuario.setForeground(new java.awt.Color(51, 51, 51));
+        tblUsuario.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Id", "Nome", "Cpf", "Senha"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblUsuario.setGridColor(new java.awt.Color(255, 255, 255));
+        tblUsuario.setRowHeight(20);
+        tblUsuario.setSelectionBackground(new java.awt.Color(0, 153, 153));
+        tblUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblUsuarioMouseClicked(evt);
+            }
+        });
+        jScrollPane4.setViewportView(tblUsuario);
+        if (tblUsuario.getColumnModel().getColumnCount() > 0) {
+            tblUsuario.getColumnModel().getColumn(0).setResizable(false);
+            tblUsuario.getColumnModel().getColumn(1).setResizable(false);
+            tblUsuario.getColumnModel().getColumn(2).setResizable(false);
+            tblUsuario.getColumnModel().getColumn(3).setResizable(false);
+        }
+
+        jTextField3.setToolTipText("Pesquisar");
+
+        btnPesquisarUsuario.setText("Pesquisar");
+        btnPesquisarUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnPesquisarUsuarioMouseClicked(evt);
+            }
+        });
+        btnPesquisarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesquisarUsuarioActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout UsuariosLayout = new javax.swing.GroupLayout(Usuarios);
+        Usuarios.setLayout(UsuariosLayout);
+        UsuariosLayout.setHorizontalGroup(
+            UsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 943, Short.MAX_VALUE)
+            .addGroup(UsuariosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTextField3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnPesquisarUsuario)
+                .addGap(8, 8, 8))
         );
-        FavoritosLayout.setVerticalGroup(
-            FavoritosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(FavoritosLayout.createSequentialGroup()
-                .addGap(113, 113, 113)
-                .addComponent(jLabel4)
-                .addContainerGap(163, Short.MAX_VALUE))
+        UsuariosLayout.setVerticalGroup(
+            UsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, UsuariosLayout.createSequentialGroup()
+                .addGroup(UsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnPesquisarUsuario))
+                .addGap(27, 27, 27)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE))
         );
 
-        Principal.add(Favoritos, "card3");
+        Principal.add(Usuarios, "card3");
 
-        MinhaConta.setBackground(new java.awt.Color(255, 255, 255));
+        MostraUsuario.setBackground(new java.awt.Color(255, 255, 255));
+        MostraUsuario.setPreferredSize(new java.awt.Dimension(450, 450));
+        MostraUsuario.setLayout(new javax.swing.BoxLayout(MostraUsuario, javax.swing.BoxLayout.LINE_AXIS));
 
-        jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(0, 153, 153));
-        jLabel13.setText("Minha Conta");
+        body_mostradeputado4.setFont(new java.awt.Font("Times New Roman", 0, 10)); // NOI18N
 
-        javax.swing.GroupLayout MinhaContaLayout = new javax.swing.GroupLayout(MinhaConta);
-        MinhaConta.setLayout(MinhaContaLayout);
-        MinhaContaLayout.setHorizontalGroup(
-            MinhaContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MinhaContaLayout.createSequentialGroup()
-                .addContainerGap(505, Short.MAX_VALUE)
-                .addComponent(jLabel13)
-                .addGap(300, 300, 300))
+        jLabel35.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        jLabel35.setText("Email:");
+
+        lblEmail4.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        lblEmail4.setText(" ");
+
+        lblIL4.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        lblIL4.setText(" ");
+
+        jLabel36.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        jLabel36.setText("Id Legislatura:");
+
+        jLabel37.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        jLabel37.setText("Ideologia:");
+
+        jLabel38.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        jLabel38.setText("CPF: ");
+
+        txtNome10.setBackground(new java.awt.Color(240, 240, 240));
+        txtNome10.setFont(new java.awt.Font("Raleway Light", 0, 16)); // NOI18N
+        txtNome10.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 153, 153)));
+        txtNome10.setSelectionColor(new java.awt.Color(0, 153, 153));
+
+        jLabel39.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        jLabel39.setText("Senha:");
+
+        jLabel40.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        jLabel40.setText("Nome:");
+
+        txtNome11.setBackground(new java.awt.Color(240, 240, 240));
+        txtNome11.setFont(new java.awt.Font("Raleway Light", 0, 16)); // NOI18N
+        txtNome11.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 153, 153)));
+        txtNome11.setSelectionColor(new java.awt.Color(0, 153, 153));
+
+        txtNome12.setBackground(new java.awt.Color(240, 240, 240));
+        txtNome12.setFont(new java.awt.Font("Raleway Light", 0, 16)); // NOI18N
+        txtNome12.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 153, 153)));
+        txtNome12.setSelectionColor(new java.awt.Color(0, 153, 153));
+
+        txtNome13.setBackground(new java.awt.Color(240, 240, 240));
+        txtNome13.setFont(new java.awt.Font("Raleway Light", 0, 16)); // NOI18N
+        txtNome13.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 153, 153)));
+        txtNome13.setSelectionColor(new java.awt.Color(0, 153, 153));
+        txtNome13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNome13ActionPerformed(evt);
+            }
+        });
+
+        txtNome14.setBackground(new java.awt.Color(240, 240, 240));
+        txtNome14.setFont(new java.awt.Font("Raleway Light", 0, 16)); // NOI18N
+        txtNome14.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 153, 153)));
+        txtNome14.setSelectionColor(new java.awt.Color(0, 153, 153));
+
+        jScrollPane6.setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane6.setBorder(null);
+
+        tblDeputado3.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        tblDeputado3.setForeground(new java.awt.Color(51, 51, 51));
+        tblDeputado3.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Id", "Nome", "Partido", "Estado"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblDeputado3.setGridColor(new java.awt.Color(255, 255, 255));
+        tblDeputado3.setRowHeight(20);
+        tblDeputado3.setSelectionBackground(new java.awt.Color(0, 153, 153));
+        tblDeputado3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblDeputado3MouseClicked(evt);
+            }
+        });
+        jScrollPane6.setViewportView(tblDeputado3);
+        if (tblDeputado3.getColumnModel().getColumnCount() > 0) {
+            tblDeputado3.getColumnModel().getColumn(0).setResizable(false);
+            tblDeputado3.getColumnModel().getColumn(1).setResizable(false);
+            tblDeputado3.getColumnModel().getColumn(2).setResizable(false);
+            tblDeputado3.getColumnModel().getColumn(3).setResizable(false);
+        }
+
+        btnPesquisarDeputado3.setText("Pesquisar");
+        btnPesquisarDeputado3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesquisarDeputado3ActionPerformed(evt);
+            }
+        });
+
+        jTextField5.setToolTipText("Pesquisar");
+
+        btnLogin4.setBackground(new java.awt.Color(0, 153, 153));
+        btnLogin4.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        btnLogin4.setForeground(new java.awt.Color(255, 255, 255));
+        btnLogin4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnLogin4.setText("Alterar");
+        btnLogin4.setOpaque(true);
+        btnLogin4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnLogin4MouseClicked(evt);
+            }
+        });
+
+        btnLogin5.setBackground(new java.awt.Color(0, 153, 153));
+        btnLogin5.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        btnLogin5.setForeground(new java.awt.Color(255, 255, 255));
+        btnLogin5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnLogin5.setText("Excluir");
+        btnLogin5.setOpaque(true);
+        btnLogin5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnLogin5MouseClicked(evt);
+            }
+        });
+
+        jLabel41.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        jLabel41.setText("Políticos Favoritos:");
+
+        javax.swing.GroupLayout body_mostradeputado4Layout = new javax.swing.GroupLayout(body_mostradeputado4);
+        body_mostradeputado4.setLayout(body_mostradeputado4Layout);
+        body_mostradeputado4Layout.setHorizontalGroup(
+            body_mostradeputado4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(body_mostradeputado4Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(jLabel36)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblIL4, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(body_mostradeputado4Layout.createSequentialGroup()
+                .addGap(11, 11, 11)
+                .addGroup(body_mostradeputado4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(body_mostradeputado4Layout.createSequentialGroup()
+                        .addGroup(body_mostradeputado4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnLogin4, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnLogin5, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(12, 12, 12)
+                        .addComponent(lblEmail4, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(body_mostradeputado4Layout.createSequentialGroup()
+                        .addGroup(body_mostradeputado4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel37)
+                            .addComponent(jLabel38))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(body_mostradeputado4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtNome13, javax.swing.GroupLayout.DEFAULT_SIZE, 289, Short.MAX_VALUE)
+                            .addComponent(txtNome14)))
+                    .addComponent(jLabel39)
+                    .addGroup(body_mostradeputado4Layout.createSequentialGroup()
+                        .addComponent(jLabel40)
+                        .addGap(29, 29, 29)
+                        .addComponent(txtNome11, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(body_mostradeputado4Layout.createSequentialGroup()
+                        .addComponent(jLabel35)
+                        .addGap(34, 34, 34)
+                        .addGroup(body_mostradeputado4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(txtNome10)
+                            .addComponent(txtNome12, javax.swing.GroupLayout.DEFAULT_SIZE, 289, Short.MAX_VALUE))))
+                .addGap(18, 18, 18)
+                .addGroup(body_mostradeputado4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(body_mostradeputado4Layout.createSequentialGroup()
+                        .addComponent(jLabel41)
+                        .addGap(0, 423, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, body_mostradeputado4Layout.createSequentialGroup()
+                        .addComponent(jTextField5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnPesquisarDeputado3)
+                        .addContainerGap())
+                    .addGroup(body_mostradeputado4Layout.createSequentialGroup()
+                        .addComponent(jScrollPane6)
+                        .addGap(11, 11, 11))))
         );
-        MinhaContaLayout.setVerticalGroup(
-            MinhaContaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(MinhaContaLayout.createSequentialGroup()
-                .addGap(113, 113, 113)
-                .addComponent(jLabel13)
-                .addContainerGap(163, Short.MAX_VALUE))
+        body_mostradeputado4Layout.setVerticalGroup(
+            body_mostradeputado4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(body_mostradeputado4Layout.createSequentialGroup()
+                .addGroup(body_mostradeputado4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(body_mostradeputado4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(body_mostradeputado4Layout.createSequentialGroup()
+                            .addGap(25, 25, 25)
+                            .addGroup(body_mostradeputado4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel40, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnPesquisarDeputado3)))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, body_mostradeputado4Layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(txtNome11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(body_mostradeputado4Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jLabel41, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(body_mostradeputado4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(body_mostradeputado4Layout.createSequentialGroup()
+                        .addGroup(body_mostradeputado4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel39, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNome12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(body_mostradeputado4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel35)
+                            .addComponent(txtNome10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(body_mostradeputado4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel37)
+                            .addComponent(txtNome13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(body_mostradeputado4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel38)
+                            .addComponent(txtNome14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(body_mostradeputado4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(body_mostradeputado4Layout.createSequentialGroup()
+                                .addGap(68, 68, 68)
+                                .addComponent(lblEmail4))
+                            .addGroup(body_mostradeputado4Layout.createSequentialGroup()
+                                .addGap(61, 61, 61)
+                                .addComponent(btnLogin4, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnLogin5, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGap(11, 11, 11)
+                .addGroup(body_mostradeputado4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel36)
+                    .addComponent(lblIL4))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        Principal.add(MinhaConta, "card3");
+        MostraUsuario.add(body_mostradeputado4);
+
+        Principal.add(MostraUsuario, "card3");
 
         MostraDeputado.setBackground(new java.awt.Color(255, 255, 255));
         MostraDeputado.setPreferredSize(new java.awt.Dimension(450, 450));
@@ -387,80 +676,87 @@ public class Politicos extends javax.swing.JFrame {
         lblEscolaridade.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
         lblEscolaridade.setText(" ");
 
+        btnFavoritar.setBackground(new java.awt.Color(0, 153, 153));
+        btnFavoritar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        btnFavoritar.setForeground(new java.awt.Color(255, 255, 255));
+        btnFavoritar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnFavoritar.setText("Favoritar");
+        btnFavoritar.setOpaque(true);
+        btnFavoritar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnFavoritarMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout body_mostradeputadoLayout = new javax.swing.GroupLayout(body_mostradeputado);
         body_mostradeputado.setLayout(body_mostradeputadoLayout);
         body_mostradeputadoLayout.setHorizontalGroup(
             body_mostradeputadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(body_mostradeputadoLayout.createSequentialGroup()
+                .addGap(8, 8, 8)
                 .addGroup(body_mostradeputadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(body_mostradeputadoLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lblImg, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblPartido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(body_mostradeputadoLayout.createSequentialGroup()
-                        .addGap(19, 19, 19)
                         .addGroup(body_mostradeputadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(body_mostradeputadoLayout.createSequentialGroup()
-                                .addComponent(jLabel10)
+                                .addComponent(jLabel11)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblPartido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(lblIL, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(body_mostradeputadoLayout.createSequentialGroup()
-                                .addGroup(body_mostradeputadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(body_mostradeputadoLayout.createSequentialGroup()
-                                        .addComponent(jLabel11)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(lblIL, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(body_mostradeputadoLayout.createSequentialGroup()
-                                        .addComponent(jLabel6)
-                                        .addGap(327, 327, 327)
-                                        .addComponent(lblEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(body_mostradeputadoLayout.createSequentialGroup()
-                                        .addComponent(jLabel12)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(lblCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(body_mostradeputadoLayout.createSequentialGroup()
-                                        .addComponent(jLabel9)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(lblCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(body_mostradeputadoLayout.createSequentialGroup()
-                                        .addComponent(jLabel2)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(lblUf, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(body_mostradeputadoLayout.createSequentialGroup()
-                                        .addComponent(jLabel8)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(lblEscolaridade, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
-                .addGap(0, 0, 0)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 487, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                                .addComponent(jLabel12)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lblCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(body_mostradeputadoLayout.createSequentialGroup()
+                                .addComponent(jLabel9)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(body_mostradeputadoLayout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblUf, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(body_mostradeputadoLayout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblEscolaridade, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblImg, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(body_mostradeputadoLayout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 52, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(body_mostradeputadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 487, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnFavoritar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(8, 8, 8))
         );
         body_mostradeputadoLayout.setVerticalGroup(
             body_mostradeputadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(body_mostradeputadoLayout.createSequentialGroup()
-                .addGroup(body_mostradeputadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(body_mostradeputadoLayout.createSequentialGroup()
-                        .addComponent(lblImg, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(body_mostradeputadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel8)
-                            .addComponent(lblEscolaridade))
-                        .addGap(2, 2, 2)
-                        .addGroup(body_mostradeputadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(lblUf))
-                        .addGap(4, 4, 4)
-                        .addGroup(body_mostradeputadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel9)
-                            .addComponent(lblCidade))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(body_mostradeputadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(lblEmail))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(body_mostradeputadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel10)
-                            .addComponent(lblPartido))))
+                .addComponent(lblImg, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(body_mostradeputadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(lblEscolaridade))
+                .addGap(2, 2, 2)
+                .addGroup(body_mostradeputadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(lblUf))
+                .addGap(4, 4, 4)
+                .addGroup(body_mostradeputadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(lblCidade))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(body_mostradeputadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(lblEmail))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(body_mostradeputadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(lblPartido))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(body_mostradeputadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCpf)
@@ -470,6 +766,11 @@ public class Politicos extends javax.swing.JFrame {
                     .addComponent(jLabel11)
                     .addComponent(lblIL))
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(body_mostradeputadoLayout.createSequentialGroup()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnFavoritar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         MostraDeputado.add(body_mostradeputado);
@@ -582,19 +883,77 @@ public class Politicos extends javax.swing.JFrame {
 
         Principal.add(Deputados, "card3");
 
-        Usuarios.setBackground(new java.awt.Color(243, 243, 243));
+        MinhaConta.setBackground(new java.awt.Color(255, 255, 255));
+        MinhaConta.setPreferredSize(new java.awt.Dimension(450, 450));
+        MinhaConta.setLayout(new javax.swing.BoxLayout(MinhaConta, javax.swing.BoxLayout.LINE_AXIS));
 
-        jScrollPane4.setBackground(new java.awt.Color(255, 255, 255));
-        jScrollPane4.setBorder(null);
+        body_mostradeputado5.setFont(new java.awt.Font("Times New Roman", 0, 10)); // NOI18N
 
-        tblUsuario.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        tblUsuario.setForeground(new java.awt.Color(51, 51, 51));
-        tblUsuario.setModel(new javax.swing.table.DefaultTableModel(
+        jLabel42.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        jLabel42.setText("Email:");
+
+        lblEmail5.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        lblEmail5.setText(" ");
+
+        lblIL5.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        lblIL5.setText(" ");
+
+        jLabel43.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        jLabel43.setText("Id Legislatura:");
+
+        jLabel44.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        jLabel44.setText("Ideologia:");
+
+        jLabel45.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        jLabel45.setText("CPF: ");
+
+        txtEmail.setBackground(new java.awt.Color(240, 240, 240));
+        txtEmail.setFont(new java.awt.Font("Raleway Light", 0, 16)); // NOI18N
+        txtEmail.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 153, 153)));
+        txtEmail.setSelectionColor(new java.awt.Color(0, 153, 153));
+
+        jLabel46.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        jLabel46.setText("Senha:");
+
+        jLabel47.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        jLabel47.setText("Nome:");
+
+        txtNome.setBackground(new java.awt.Color(240, 240, 240));
+        txtNome.setFont(new java.awt.Font("Raleway Light", 0, 16)); // NOI18N
+        txtNome.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 153, 153)));
+        txtNome.setSelectionColor(new java.awt.Color(0, 153, 153));
+
+        txtSenha.setBackground(new java.awt.Color(240, 240, 240));
+        txtSenha.setFont(new java.awt.Font("Raleway Light", 0, 16)); // NOI18N
+        txtSenha.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 153, 153)));
+        txtSenha.setSelectionColor(new java.awt.Color(0, 153, 153));
+
+        txtIdeologia.setBackground(new java.awt.Color(240, 240, 240));
+        txtIdeologia.setFont(new java.awt.Font("Raleway Light", 0, 16)); // NOI18N
+        txtIdeologia.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 153, 153)));
+        txtIdeologia.setSelectionColor(new java.awt.Color(0, 153, 153));
+        txtIdeologia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIdeologiaActionPerformed(evt);
+            }
+        });
+
+        txtCPF.setBackground(new java.awt.Color(240, 240, 240));
+        txtCPF.setFont(new java.awt.Font("Raleway Light", 0, 16)); // NOI18N
+        txtCPF.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 153, 153)));
+        txtCPF.setSelectionColor(new java.awt.Color(0, 153, 153));
+
+        jScrollPane7.setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane7.setBorder(null);
+
+        tblDeputado4.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        tblDeputado4.setForeground(new java.awt.Color(51, 51, 51));
+        tblDeputado4.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Id", "Nome", "Cpf", "Senha"
+                "Id", "Nome", "Partido", "Estado"
             }
         ) {
             Class[] types = new Class [] {
@@ -612,207 +971,165 @@ public class Politicos extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tblUsuario.setGridColor(new java.awt.Color(255, 255, 255));
-        tblUsuario.setRowHeight(20);
-        tblUsuario.setSelectionBackground(new java.awt.Color(0, 153, 153));
-        tblUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
+        tblDeputado4.setGridColor(new java.awt.Color(255, 255, 255));
+        tblDeputado4.setRowHeight(20);
+        tblDeputado4.setSelectionBackground(new java.awt.Color(0, 153, 153));
+        tblDeputado4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblUsuarioMouseClicked(evt);
+                tblDeputado4MouseClicked(evt);
             }
         });
-        jScrollPane4.setViewportView(tblUsuario);
-        if (tblUsuario.getColumnModel().getColumnCount() > 0) {
-            tblUsuario.getColumnModel().getColumn(0).setResizable(false);
-            tblUsuario.getColumnModel().getColumn(1).setResizable(false);
-            tblUsuario.getColumnModel().getColumn(2).setResizable(false);
-            tblUsuario.getColumnModel().getColumn(3).setResizable(false);
+        jScrollPane7.setViewportView(tblDeputado4);
+        if (tblDeputado4.getColumnModel().getColumnCount() > 0) {
+            tblDeputado4.getColumnModel().getColumn(0).setResizable(false);
+            tblDeputado4.getColumnModel().getColumn(1).setResizable(false);
+            tblDeputado4.getColumnModel().getColumn(2).setResizable(false);
+            tblDeputado4.getColumnModel().getColumn(3).setResizable(false);
         }
 
-        jTextField3.setToolTipText("Pesquisar");
-
-        btnPesquisarUsuario.setText("Pesquisar");
-        btnPesquisarUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnPesquisarUsuarioMouseClicked(evt);
-            }
-        });
-        btnPesquisarUsuario.addActionListener(new java.awt.event.ActionListener() {
+        btnPesquisarDeputado4.setText("Pesquisar");
+        btnPesquisarDeputado4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPesquisarUsuarioActionPerformed(evt);
+                btnPesquisarDeputado4ActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout UsuariosLayout = new javax.swing.GroupLayout(Usuarios);
-        Usuarios.setLayout(UsuariosLayout);
-        UsuariosLayout.setHorizontalGroup(
-            UsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 943, Short.MAX_VALUE)
-            .addGroup(UsuariosLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTextField3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnPesquisarUsuario)
-                .addGap(8, 8, 8))
+        jTextField6.setToolTipText("Pesquisar");
+
+        btnLogin6.setBackground(new java.awt.Color(0, 153, 153));
+        btnLogin6.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        btnLogin6.setForeground(new java.awt.Color(255, 255, 255));
+        btnLogin6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnLogin6.setText("Alterar");
+        btnLogin6.setOpaque(true);
+        btnLogin6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnLogin6MouseClicked(evt);
+            }
+        });
+
+        btnLogin7.setBackground(new java.awt.Color(0, 153, 153));
+        btnLogin7.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        btnLogin7.setForeground(new java.awt.Color(255, 255, 255));
+        btnLogin7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnLogin7.setText("Excluir");
+        btnLogin7.setOpaque(true);
+        btnLogin7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnLogin7MouseClicked(evt);
+            }
+        });
+
+        jLabel48.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        jLabel48.setText("Políticos Favoritos:");
+
+        javax.swing.GroupLayout body_mostradeputado5Layout = new javax.swing.GroupLayout(body_mostradeputado5);
+        body_mostradeputado5.setLayout(body_mostradeputado5Layout);
+        body_mostradeputado5Layout.setHorizontalGroup(
+            body_mostradeputado5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(body_mostradeputado5Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(jLabel43)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblIL5, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(body_mostradeputado5Layout.createSequentialGroup()
+                .addGap(11, 11, 11)
+                .addGroup(body_mostradeputado5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(body_mostradeputado5Layout.createSequentialGroup()
+                        .addGroup(body_mostradeputado5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnLogin6, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnLogin7, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(12, 12, 12)
+                        .addComponent(lblEmail5, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(body_mostradeputado5Layout.createSequentialGroup()
+                        .addGroup(body_mostradeputado5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel44)
+                            .addComponent(jLabel45))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(body_mostradeputado5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtIdeologia, javax.swing.GroupLayout.DEFAULT_SIZE, 289, Short.MAX_VALUE)
+                            .addComponent(txtCPF)))
+                    .addComponent(jLabel46)
+                    .addGroup(body_mostradeputado5Layout.createSequentialGroup()
+                        .addComponent(jLabel47)
+                        .addGap(29, 29, 29)
+                        .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(body_mostradeputado5Layout.createSequentialGroup()
+                        .addComponent(jLabel42)
+                        .addGap(34, 34, 34)
+                        .addGroup(body_mostradeputado5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(txtEmail)
+                            .addComponent(txtSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 289, Short.MAX_VALUE))))
+                .addGap(18, 18, 18)
+                .addGroup(body_mostradeputado5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(body_mostradeputado5Layout.createSequentialGroup()
+                        .addComponent(jLabel48)
+                        .addGap(0, 423, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, body_mostradeputado5Layout.createSequentialGroup()
+                        .addComponent(jTextField6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnPesquisarDeputado4)
+                        .addContainerGap())
+                    .addGroup(body_mostradeputado5Layout.createSequentialGroup()
+                        .addComponent(jScrollPane7)
+                        .addGap(11, 11, 11))))
         );
-        UsuariosLayout.setVerticalGroup(
-            UsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, UsuariosLayout.createSequentialGroup()
-                .addGroup(UsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPesquisarUsuario))
-                .addGap(27, 27, 27)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE))
-        );
-
-        Principal.add(Usuarios, "card3");
-
-        MostraUsuario.setBackground(new java.awt.Color(255, 255, 255));
-        MostraUsuario.setPreferredSize(new java.awt.Dimension(450, 450));
-        MostraUsuario.setLayout(new javax.swing.BoxLayout(MostraUsuario, javax.swing.BoxLayout.LINE_AXIS));
-
-        body_mostradeputado2.setFont(new java.awt.Font("Times New Roman", 0, 10)); // NOI18N
-
-        lblImg2.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
-
-        txtDiscurso2.setEditable(false);
-        txtDiscurso2.setColumns(20);
-        txtDiscurso2.setFont(new java.awt.Font("Segoe UI Light", 0, 12)); // NOI18N
-        txtDiscurso2.setLineWrap(true);
-        txtDiscurso2.setRows(5);
-        txtDiscurso2.setWrapStyleWord(true);
-        txtDiscurso2.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        jScrollPane5.setViewportView(txtDiscurso2);
-
-        lblUf2.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
-        lblUf2.setText(" ");
-
-        jLabel20.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
-        jLabel20.setText("Unidade Federativa:");
-
-        jLabel21.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
-        jLabel21.setText("Email:");
-
-        lblEmail2.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
-        lblEmail2.setText(" ");
-
-        jLabel22.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
-        jLabel22.setText("Escolaridade: ");
-
-        lblCpf2.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
-        lblCpf2.setText(" ");
-
-        lblIL2.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
-        lblIL2.setText(" ");
-
-        jLabel23.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
-        jLabel23.setText("Id Legislatura:");
-
-        jLabel24.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
-        jLabel24.setText("Cidade:");
-
-        jLabel25.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
-        jLabel25.setText("Partido:");
-
-        lblCidade2.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
-        lblCidade2.setText(" ");
-
-        lblPartido2.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
-        lblPartido2.setText(" ");
-
-        jLabel26.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
-        jLabel26.setText("CPF: ");
-
-        lblEscolaridade2.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
-        lblEscolaridade2.setText(" ");
-
-        javax.swing.GroupLayout body_mostradeputado2Layout = new javax.swing.GroupLayout(body_mostradeputado2);
-        body_mostradeputado2.setLayout(body_mostradeputado2Layout);
-        body_mostradeputado2Layout.setHorizontalGroup(
-            body_mostradeputado2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(body_mostradeputado2Layout.createSequentialGroup()
-                .addGroup(body_mostradeputado2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(body_mostradeputado2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lblImg2, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(body_mostradeputado2Layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addGroup(body_mostradeputado2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(body_mostradeputado2Layout.createSequentialGroup()
-                                .addComponent(jLabel25)
+        body_mostradeputado5Layout.setVerticalGroup(
+            body_mostradeputado5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(body_mostradeputado5Layout.createSequentialGroup()
+                .addGroup(body_mostradeputado5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(body_mostradeputado5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(body_mostradeputado5Layout.createSequentialGroup()
+                            .addGap(25, 25, 25)
+                            .addGroup(body_mostradeputado5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel47, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnPesquisarDeputado4)))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, body_mostradeputado5Layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(body_mostradeputado5Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jLabel48, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(body_mostradeputado5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(body_mostradeputado5Layout.createSequentialGroup()
+                        .addGroup(body_mostradeputado5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel46, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(body_mostradeputado5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel42)
+                            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(body_mostradeputado5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel44)
+                            .addComponent(txtIdeologia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(body_mostradeputado5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel45)
+                            .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(body_mostradeputado5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(body_mostradeputado5Layout.createSequentialGroup()
+                                .addGap(68, 68, 68)
+                                .addComponent(lblEmail5))
+                            .addGroup(body_mostradeputado5Layout.createSequentialGroup()
+                                .addGap(61, 61, 61)
+                                .addComponent(btnLogin6, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblPartido2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(body_mostradeputado2Layout.createSequentialGroup()
-                                .addGroup(body_mostradeputado2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(body_mostradeputado2Layout.createSequentialGroup()
-                                        .addComponent(jLabel23)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(lblIL2, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(body_mostradeputado2Layout.createSequentialGroup()
-                                        .addComponent(jLabel21)
-                                        .addGap(327, 327, 327)
-                                        .addComponent(lblEmail2, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(body_mostradeputado2Layout.createSequentialGroup()
-                                        .addComponent(jLabel26)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(lblCpf2, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(body_mostradeputado2Layout.createSequentialGroup()
-                                        .addComponent(jLabel24)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(lblCidade2, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(body_mostradeputado2Layout.createSequentialGroup()
-                                        .addComponent(jLabel20)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(lblUf2, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(body_mostradeputado2Layout.createSequentialGroup()
-                                        .addComponent(jLabel22)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(lblEscolaridade2, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
-                .addGap(0, 0, 0)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 487, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        body_mostradeputado2Layout.setVerticalGroup(
-            body_mostradeputado2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(body_mostradeputado2Layout.createSequentialGroup()
-                .addGroup(body_mostradeputado2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(body_mostradeputado2Layout.createSequentialGroup()
-                        .addComponent(lblImg2, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(body_mostradeputado2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel22)
-                            .addComponent(lblEscolaridade2))
-                        .addGap(2, 2, 2)
-                        .addGroup(body_mostradeputado2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel20)
-                            .addComponent(lblUf2))
-                        .addGap(4, 4, 4)
-                        .addGroup(body_mostradeputado2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel24)
-                            .addComponent(lblCidade2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(body_mostradeputado2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel21)
-                            .addComponent(lblEmail2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(body_mostradeputado2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel25)
-                            .addComponent(lblPartido2))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(body_mostradeputado2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCpf2)
-                    .addComponent(jLabel26))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(body_mostradeputado2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel23)
-                    .addComponent(lblIL2))
+                                .addComponent(btnLogin7, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGap(11, 11, 11)
+                .addGroup(body_mostradeputado5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel43)
+                    .addComponent(lblIL5))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        MostraUsuario.add(body_mostradeputado2);
+        MinhaConta.add(body_mostradeputado5);
 
-        Principal.add(MostraUsuario, "card3");
+        Principal.add(MinhaConta, "card3");
 
         javax.swing.GroupLayout mainLayout = new javax.swing.GroupLayout(main);
         main.setLayout(mainLayout);
@@ -870,22 +1187,11 @@ public class Politicos extends javax.swing.JFrame {
         // TODO add your handling code here:
         setLblColor(btnPesquisa);
         resetLblColor(btnMinhaConta);
-        resetLblColor(btnFavoritos);
         resetLblColor(btnUsuarios);
         limpaTela();
         Deputados.setVisible(true);
 
     }//GEN-LAST:event_btnPesquisaMouseClicked
-
-    private void btnFavoritosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFavoritosMouseClicked
-        // TODO add your handling code here: 
-        setLblColor(btnFavoritos);
-        resetLblColor(btnPesquisa);
-        resetLblColor(btnMinhaConta);
-        resetLblColor(btnUsuarios);
-        limpaTela();
-        Favoritos.setVisible(true);
-    }//GEN-LAST:event_btnFavoritosMouseClicked
 
     private void btnPesquisarDeputadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarDeputadoActionPerformed
         try {
@@ -904,7 +1210,6 @@ public class Politicos extends javax.swing.JFrame {
 
         limpaTela();
         MostraDeputado.setVisible(true);
-        btnFavoritos.setVisible(false);
         btnPesquisa.setVisible(false);
         btnUsuarios.setVisible(false);
         btnMinhaConta.setVisible(false);
@@ -920,12 +1225,11 @@ public class Politicos extends javax.swing.JFrame {
     }//GEN-LAST:event_tblDeputadoMouseClicked
 
     private void btnVoltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVoltarMouseClicked
-        setLblColor(btnPesquisa);
-        resetLblColor(btnFavoritos);
+        setLblColor(btnMinhaConta);
+        resetLblColor(btnPesquisa);
         limpaTela();
         MinhaConta.setVisible(true);
         btnVoltar.setVisible(false);
-        btnFavoritos.setVisible(true);
         btnPesquisa.setVisible(true);
         btnUsuarios.setVisible(true);
         btnMinhaConta.setVisible(true);
@@ -936,7 +1240,6 @@ public class Politicos extends javax.swing.JFrame {
     private void btnMinhaContaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinhaContaMouseClicked
         setLblColor(btnMinhaConta);
         resetLblColor(btnPesquisa);
-        resetLblColor(btnFavoritos);
         resetLblColor(btnUsuarios);
         limpaTela();
         MinhaConta.setVisible(true);
@@ -945,7 +1248,6 @@ public class Politicos extends javax.swing.JFrame {
     private void btnUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUsuariosMouseClicked
         setLblColor(btnUsuarios);
         resetLblColor(btnPesquisa);
-        resetLblColor(btnFavoritos);
         resetLblColor(btnMinhaConta);
         limpaTela();
         Usuarios.setVisible(true);
@@ -961,7 +1263,6 @@ public class Politicos extends javax.swing.JFrame {
         String id_deputado = model.getValueAt(selectedRowIndex, 0).toString();
 
         limpaTela();
-        btnFavoritos.setVisible(false);
         btnPesquisa.setVisible(false);
         btnUsuarios.setVisible(false);
         btnMinhaConta.setVisible(false);
@@ -984,6 +1285,51 @@ public class Politicos extends javax.swing.JFrame {
     private void btnPesquisarUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPesquisarUsuarioMouseClicked
         this.imprimirUsuarios();
     }//GEN-LAST:event_btnPesquisarUsuarioMouseClicked
+
+    private void btnFavoritarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFavoritarMouseClicked
+        new Politicos().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnFavoritarMouseClicked
+
+    private void txtNome13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNome13ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNome13ActionPerformed
+
+    private void tblDeputado3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDeputado3MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tblDeputado3MouseClicked
+
+    private void btnPesquisarDeputado3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarDeputado3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPesquisarDeputado3ActionPerformed
+
+    private void btnLogin4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLogin4MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLogin4MouseClicked
+
+    private void btnLogin5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLogin5MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLogin5MouseClicked
+
+    private void txtIdeologiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdeologiaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIdeologiaActionPerformed
+
+    private void tblDeputado4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDeputado4MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tblDeputado4MouseClicked
+
+    private void btnPesquisarDeputado4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarDeputado4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPesquisarDeputado4ActionPerformed
+
+    private void btnLogin6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLogin6MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLogin6MouseClicked
+
+    private void btnLogin7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLogin7MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLogin7MouseClicked
 
     // troca a cor dos botões
     public List<Deputado> todos_deputados;
@@ -1021,13 +1367,18 @@ public class Politicos extends javax.swing.JFrame {
             }
         }
     }
-
+    public void imprimirMinhaConta(){
+        BancoUsuarios banco = new BancoUsuarios();
+     //   Usuario user = banco.procura();
+        banco.connect();
+       // txtNome.setText();
+        banco.disconnect();
+    }
     public void setLblColor(JLabel lbl) {
         lbl.setBackground(new Color(0, 204, 204));
     }
 
     public void limpaTela() {
-        Favoritos.setVisible(false);
         Deputados.setVisible(false);
         Usuarios.setVisible(false);
         MinhaConta.setVisible(false);
@@ -1136,19 +1487,25 @@ public class Politicos extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Deputados;
-    private javax.swing.JPanel Favoritos;
     private javax.swing.JPanel MinhaConta;
     private javax.swing.JPanel MostraDeputado;
     private javax.swing.JPanel MostraUsuario;
     private javax.swing.JPanel Principal;
     private javax.swing.JPanel Usuarios;
     private javax.swing.JPanel body_mostradeputado;
-    private javax.swing.JPanel body_mostradeputado2;
+    private javax.swing.JPanel body_mostradeputado4;
+    private javax.swing.JPanel body_mostradeputado5;
     private javax.swing.JPanel body_pesquisa;
-    private javax.swing.JLabel btnFavoritos;
+    private javax.swing.JLabel btnFavoritar;
+    private javax.swing.JLabel btnLogin4;
+    private javax.swing.JLabel btnLogin5;
+    private javax.swing.JLabel btnLogin6;
+    private javax.swing.JLabel btnLogin7;
     private javax.swing.JLabel btnMinhaConta;
     private javax.swing.JLabel btnPesquisa;
     private javax.swing.JButton btnPesquisarDeputado;
+    private javax.swing.JButton btnPesquisarDeputado3;
+    private javax.swing.JButton btnPesquisarDeputado4;
     private javax.swing.JButton btnPesquisarUsuario;
     private javax.swing.JLabel btnUsuarios;
     private javax.swing.JLabel btnVoltar;
@@ -1156,17 +1513,22 @@ public class Politicos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel38;
+    private javax.swing.JLabel jLabel39;
+    private javax.swing.JLabel jLabel40;
+    private javax.swing.JLabel jLabel41;
+    private javax.swing.JLabel jLabel42;
+    private javax.swing.JLabel jLabel43;
+    private javax.swing.JLabel jLabel44;
+    private javax.swing.JLabel jLabel45;
+    private javax.swing.JLabel jLabel46;
+    private javax.swing.JLabel jLabel47;
+    private javax.swing.JLabel jLabel48;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
@@ -1177,32 +1539,42 @@ public class Politicos extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jTextField6;
     private javax.swing.JLabel lblCidade;
-    private javax.swing.JLabel lblCidade2;
     private javax.swing.JLabel lblCpf;
-    private javax.swing.JLabel lblCpf2;
     private javax.swing.JLabel lblEmail;
-    private javax.swing.JLabel lblEmail2;
+    private javax.swing.JLabel lblEmail4;
+    private javax.swing.JLabel lblEmail5;
     private javax.swing.JLabel lblEscolaridade;
-    private javax.swing.JLabel lblEscolaridade2;
     private javax.swing.JLabel lblIL;
-    private javax.swing.JLabel lblIL2;
+    private javax.swing.JLabel lblIL4;
+    private javax.swing.JLabel lblIL5;
     private javax.swing.JLabel lblImg;
-    private javax.swing.JLabel lblImg2;
     private javax.swing.JLabel lblPartido;
-    private javax.swing.JLabel lblPartido2;
     private javax.swing.JLabel lblUf;
-    private javax.swing.JLabel lblUf2;
     private javax.swing.JPanel main;
     private javax.swing.ButtonGroup radPesquisa;
     private javax.swing.JLabel subtitulo;
     private javax.swing.JTable tblDeputado;
+    private javax.swing.JTable tblDeputado3;
+    private javax.swing.JTable tblDeputado4;
     private javax.swing.JTable tblUsuario;
     private javax.swing.JLabel titulo;
+    private javax.swing.JTextField txtCPF;
     private javax.swing.JTextArea txtDiscurso;
-    private javax.swing.JTextArea txtDiscurso2;
+    private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtIdeologia;
+    private javax.swing.JTextField txtNome;
+    private javax.swing.JTextField txtNome10;
+    private javax.swing.JTextField txtNome11;
+    private javax.swing.JTextField txtNome12;
+    private javax.swing.JTextField txtNome13;
+    private javax.swing.JTextField txtNome14;
+    private javax.swing.JTextField txtSenha;
     // End of variables declaration//GEN-END:variables
 }

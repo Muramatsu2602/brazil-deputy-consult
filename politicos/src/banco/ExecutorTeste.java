@@ -15,7 +15,7 @@ import banco.BancoUsuarios;
  */
 public class ExecutorTeste {
       public static void main(String[] args) {
-    Usuario user = new Usuario("3","Lucas Rufino","123","joj@gmail.com","123","esquerda",true);
+    Usuario user = new Usuario("3","Lucas Rufino","123","joj@gmail.com","123","esquerda",1);
     BancoUsuarios usuario= new BancoUsuarios(user);
   
     usuario.connect();
