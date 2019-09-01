@@ -300,6 +300,7 @@ public class Cadastro extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
     int xx;
     int xy;
@@ -353,7 +354,7 @@ public class Cadastro extends javax.swing.JFrame {
                     "Um erro ocorreu: " + erro);
         } finally {
             if (certo) {
-                new Politicos().setVisible(true);
+                new Login().setVisible(true);
                 this.dispose();
             }
         }

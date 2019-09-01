@@ -102,9 +102,8 @@ public class BancoUsuarios {
                 + ", cpf=?"
                 //+ ", dt_nasc=" + this.dt_nasc
                 + ", email=?"
-                + ", senha=?"
                 + ", ideologia=?"
-                + "where id=?;";
+                + "where id_usuario=?;";
         try {
             pstmt = con.prepareStatement(fsql);
 
@@ -113,9 +112,8 @@ public class BancoUsuarios {
             pstmt.setString(1, this.user.getNome());
             pstmt.setString(2, this.user.getCpf());
             pstmt.setString(3, this.user.getEmail());
-            pstmt.setString(4, this.user.getSenha());
-            pstmt.setString(5, this.user.getIdeologia());
-            pstmt.setString(6, this.user.getIdUsuario());
+            pstmt.setString(4, this.user.getIdeologia());
+            pstmt.setString(5, this.user.getIdUsuario());
 
             pstmt.execute();
             pstmt.close();
@@ -285,5 +283,56 @@ public class BancoUsuarios {
 
     public String getTipo() {
         return bdtipo;
+    }
+    
+     public Usuario login(String email, String senha) {
+
+        fsql = "SELECT * FROM usuarios WHERE email=? AND senha=? AND status=1;";
+        try {
+            pstmt = con.prepareStatement(fsql);
+            pstmt.setString(1, email);
+            pstmt.setString(2, senha);
+            rs = pstmt.executeQuery();
+            if (rs.next()) {
+                this.user = null;
+                this.user = new Usuario();
+
+                this.user.setIdUsuario(rs.getString("id_usuario"));
+                this.user.setNome(rs.getString("nome"));
+                this.user.setCpf(rs.getString("cpf"));
+                this.user.setEmail(rs.getString("email"));
+                this.user.setSenha(rs.getString("senha"));
+                this.user.setIdeologia(rs.getString("ideologia"));
+                this.user.setStatus(rs.getInt("status"));
+                
+                pstmt.close();
+                return this.user;
+            } else {
+                pstmt.close();
+                return null;
+            }
+        } catch (Exception erroi) {
+            JOptionPane.showMessageDialog(null,
+                    " Erro procura do email (" + email + ")-->" + erroi);
+        }
+        return null;
+    }//login 
+     
+      public void alterarSenha() {
+      
+        fsql = "UPDATE usuarios SET"
+                + " senha=?"
+                + "where id_usuario=?;";
+        try {
+            pstmt = con.prepareStatement(fsql);           
+            pstmt.setString(1, this.user.getSenha());
+            pstmt.setString(2, this.user.getIdUsuario());
+
+            pstmt.execute();
+            pstmt.close();
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null,
+                    "Erro na alteracao de senha do Usuario:" + erro);
+        }
     }
 }// CLASS

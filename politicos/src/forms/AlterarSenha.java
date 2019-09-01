@@ -9,12 +9,15 @@ import javax.swing.JOptionPane;
  *
  * @author lucas
  */
-public class Login extends javax.swing.JFrame {
+public class AlterarSenha extends javax.swing.JFrame {
+
+    private Usuario usuario;
 
     /**
      * Creates new form Home15
      */
-    public Login() {
+    public AlterarSenha(Usuario usuario) {
+        this.usuario = usuario;
         initComponents();
     }
 
@@ -35,17 +38,19 @@ public class Login extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         Principal = new javax.swing.JPanel();
         Login = new javax.swing.JPanel();
-        body_mostradeputado2 = new javax.swing.JPanel();
+        btnSalvarSenha = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        txtNome = new javax.swing.JTextField();
-        btnLogin = new javax.swing.JLabel();
-        btnCadastro = new javax.swing.JLabel();
+        txtSenhaAtual = new javax.swing.JTextField();
+        btnSalvar = new javax.swing.JLabel();
         txtSenha = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        txtConfirmarSenha = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
         setUndecorated(true);
+        setPreferredSize(null);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -67,11 +72,11 @@ public class Login extends javax.swing.JFrame {
 
         subtitulo.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         subtitulo.setForeground(new java.awt.Color(255, 255, 255));
-        subtitulo.setText("Informações sobre os deputados federais");
+        subtitulo.setText("Insira sua nova senha e divirta-se");
 
         titulo.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         titulo.setForeground(new java.awt.Color(255, 255, 255));
-        titulo.setText("Políticos");
+        titulo.setText("Alterar Senha");
 
         jLabel3.setBackground(new java.awt.Color(0, 153, 153));
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
@@ -116,38 +121,29 @@ public class Login extends javax.swing.JFrame {
         Login.setPreferredSize(new java.awt.Dimension(450, 450));
         Login.setLayout(new javax.swing.BoxLayout(Login, javax.swing.BoxLayout.LINE_AXIS));
 
-        body_mostradeputado2.setFont(new java.awt.Font("Times New Roman", 0, 10)); // NOI18N
+        btnSalvarSenha.setFont(new java.awt.Font("Times New Roman", 0, 10)); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
-        jLabel4.setText("Senha:");
+        jLabel4.setText("Nova Senha:");
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
-        jLabel2.setText("Nome:");
+        jLabel2.setText("Senha Atual");
 
-        txtNome.setBackground(new java.awt.Color(240, 240, 240));
-        txtNome.setFont(new java.awt.Font("Raleway Light", 0, 16)); // NOI18N
-        txtNome.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 153, 153)));
-        txtNome.setSelectionColor(new java.awt.Color(0, 153, 153));
+        txtSenhaAtual.setBackground(new java.awt.Color(240, 240, 240));
+        txtSenhaAtual.setFont(new java.awt.Font("Raleway Light", 0, 16)); // NOI18N
+        txtSenhaAtual.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 153, 153)));
+        txtSenhaAtual.setSelectionColor(new java.awt.Color(0, 153, 153));
 
-        btnLogin.setBackground(new java.awt.Color(0, 153, 153));
-        btnLogin.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        btnLogin.setForeground(new java.awt.Color(255, 255, 255));
-        btnLogin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnLogin.setText("Login");
-        btnLogin.setOpaque(true);
-        btnLogin.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnSalvar.setBackground(new java.awt.Color(0, 153, 153));
+        btnSalvar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        btnSalvar.setForeground(new java.awt.Color(255, 255, 255));
+        btnSalvar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnSalvar.setText("Salvar");
+        btnSalvar.setOpaque(true);
+        btnSalvar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnLoginMouseClicked(evt);
-            }
-        });
-
-        btnCadastro.setBackground(new java.awt.Color(255, 255, 255));
-        btnCadastro.setFont(new java.awt.Font("Segoe UI Light", 0, 12)); // NOI18N
-        btnCadastro.setText("Não tem conta? Se fodeu!");
-        btnCadastro.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnCadastroMouseClicked(evt);
+                btnSalvarMouseClicked(evt);
             }
         });
 
@@ -156,49 +152,60 @@ public class Login extends javax.swing.JFrame {
         txtSenha.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 153, 153)));
         txtSenha.setSelectionColor(new java.awt.Color(0, 153, 153));
 
-        javax.swing.GroupLayout body_mostradeputado2Layout = new javax.swing.GroupLayout(body_mostradeputado2);
-        body_mostradeputado2.setLayout(body_mostradeputado2Layout);
-        body_mostradeputado2Layout.setHorizontalGroup(
-            body_mostradeputado2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(body_mostradeputado2Layout.createSequentialGroup()
-                .addGroup(body_mostradeputado2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(body_mostradeputado2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(body_mostradeputado2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, body_mostradeputado2Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, body_mostradeputado2Layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(body_mostradeputado2Layout.createSequentialGroup()
-                        .addGap(97, 97, 97)
-                        .addGroup(body_mostradeputado2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnCadastro)
-                            .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        jLabel5.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
+        jLabel5.setText("Confimar Senha");
+
+        txtConfirmarSenha.setBackground(new java.awt.Color(240, 240, 240));
+        txtConfirmarSenha.setFont(new java.awt.Font("Raleway Light", 0, 16)); // NOI18N
+        txtConfirmarSenha.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 153, 153)));
+        txtConfirmarSenha.setSelectionColor(new java.awt.Color(0, 153, 153));
+
+        javax.swing.GroupLayout btnSalvarSenhaLayout = new javax.swing.GroupLayout(btnSalvarSenha);
+        btnSalvarSenha.setLayout(btnSalvarSenhaLayout);
+        btnSalvarSenhaLayout.setHorizontalGroup(
+            btnSalvarSenhaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnSalvarSenhaLayout.createSequentialGroup()
+                .addGap(138, 138, 138)
+                .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(133, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnSalvarSenhaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(btnSalvarSenhaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(btnSalvarSenhaLayout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtSenhaAtual, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(btnSalvarSenhaLayout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(btnSalvarSenhaLayout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtConfirmarSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
-        body_mostradeputado2Layout.setVerticalGroup(
-            body_mostradeputado2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(body_mostradeputado2Layout.createSequentialGroup()
-                .addGap(55, 55, 55)
-                .addGroup(body_mostradeputado2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        btnSalvarSenhaLayout.setVerticalGroup(
+            btnSalvarSenhaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnSalvarSenhaLayout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addGroup(btnSalvarSenhaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(body_mostradeputado2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
-                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtSenhaAtual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(btnSalvarSenhaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnCadastro)
-                .addGap(31, 31, 31))
+                .addGroup(btnSalvarSenhaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(txtConfirmarSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(57, 57, 57)
+                .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(85, Short.MAX_VALUE))
         );
 
-        Login.add(body_mostradeputado2);
+        Login.add(btnSalvarSenha);
 
         Principal.add(Login, "card3");
 
@@ -206,8 +213,8 @@ public class Login extends javax.swing.JFrame {
         main.setLayout(mainLayout);
         mainLayout.setHorizontalGroup(
             mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Principal, javax.swing.GroupLayout.DEFAULT_SIZE, 496, Short.MAX_VALUE)
-            .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE, 496, Short.MAX_VALUE)
+            .addComponent(Principal, javax.swing.GroupLayout.DEFAULT_SIZE, 569, Short.MAX_VALUE)
+            .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE, 569, Short.MAX_VALUE)
         );
         mainLayout.setVerticalGroup(
             mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -226,10 +233,11 @@ public class Login extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(main, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(main, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
     int xx;
     int xy;
@@ -249,47 +257,58 @@ public class Login extends javax.swing.JFrame {
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
         // TODO add your handling code here:
-        System.exit(0);
+        this.dispose();
     }//GEN-LAST:event_jLabel3MouseClicked
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
 
     }//GEN-LAST:event_formWindowOpened
 
-    private void btnLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseClicked
-
+    private void btnSalvarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalvarMouseClicked
+        if(txtSenha.getText().isEmpty()){
+             JOptionPane.showMessageDialog(null,
+                            "Preencher campo SENHA");
+             return ;
+        }
+        
+        
         try {
+            
+            if (txtSenhaAtual.getText().equals(usuario.getSenha())) {
 
-            BancoUsuarios banco = new BancoUsuarios();
-            banco.connect();
-            List<Usuario> users = banco.pegaDados();
-            String nome = txtNome.getText();
-            String senha = txtSenha.getText();
+                if (txtSenha.getText().equals(txtConfirmarSenha.getText())) {
+                    
 
-            for (int x = 0; x < users.size(); x++) {
-                if (nome.equals(users.get(x).getNome())) {
+                    usuario.setSenha(txtSenha.getText());
 
-                    if (senha.equals(users.get(x).getSenha())) {
-                        
-                        new Politicos().setVisible(true);
-                        this.dispose();
-                        break;
-                    }
+                    BancoUsuarios bd = new BancoUsuarios(usuario);
+
+                    bd.connect();
+                    bd.alterarSenha();
+
+                    bd.disconnect();
+                    this.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(null,
+                            "As Senhas inseridas não Conferem");
+                    txtSenha.grabFocus();
+                    txtSenha.setText(null);
+                    txtConfirmarSenha.setText(null);
                 }
+
+            } else {
+                JOptionPane.showMessageDialog(null,
+                        "Senha Atual incorreta! Insira novamente");
+                txtSenhaAtual.grabFocus();
+                txtSenhaAtual.setText(null);
             }
-            banco.disconnect();
 
         } catch (Exception erro) {
 
             JOptionPane.showMessageDialog(null,
                     "Um erro ocorreu: " + erro);
         }
-    }//GEN-LAST:event_btnLoginMouseClicked
-
-    private void btnCadastroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCadastroMouseClicked
-        new Cadastro().setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btnCadastroMouseClicked
+    }//GEN-LAST:event_btnSalvarMouseClicked
 
     // troca a cor dos botões
     //-----------End --------
@@ -325,7 +344,7 @@ public class Login extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Login().setVisible(true);
+                new AlterarSenha(null).setVisible(true);
 
             }
         });
@@ -335,18 +354,19 @@ public class Login extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Login;
     private javax.swing.JPanel Principal;
-    private javax.swing.JPanel body_mostradeputado2;
-    private javax.swing.JLabel btnCadastro;
-    private javax.swing.JLabel btnLogin;
+    private javax.swing.JLabel btnSalvar;
+    private javax.swing.JPanel btnSalvarSenha;
     private javax.swing.JPanel header;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel main;
     private javax.swing.ButtonGroup radPesquisa;
     private javax.swing.JLabel subtitulo;
     private javax.swing.JLabel titulo;
-    private javax.swing.JTextField txtNome;
+    private javax.swing.JTextField txtConfirmarSenha;
     private javax.swing.JTextField txtSenha;
+    private javax.swing.JTextField txtSenhaAtual;
     // End of variables declaration//GEN-END:variables
 }

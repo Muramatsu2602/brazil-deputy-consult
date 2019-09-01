@@ -38,7 +38,7 @@ public class Login extends javax.swing.JFrame {
         body_mostradeputado2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        txtNome = new javax.swing.JTextField();
+        txtEmail = new javax.swing.JTextField();
         btnLogin = new javax.swing.JLabel();
         btnCadastro = new javax.swing.JLabel();
         txtSenha = new javax.swing.JTextField();
@@ -123,12 +123,12 @@ public class Login extends javax.swing.JFrame {
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
-        jLabel2.setText("Nome:");
+        jLabel2.setText("Email:");
 
-        txtNome.setBackground(new java.awt.Color(240, 240, 240));
-        txtNome.setFont(new java.awt.Font("Raleway Light", 0, 16)); // NOI18N
-        txtNome.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 153, 153)));
-        txtNome.setSelectionColor(new java.awt.Color(0, 153, 153));
+        txtEmail.setBackground(new java.awt.Color(240, 240, 240));
+        txtEmail.setFont(new java.awt.Font("Raleway Light", 0, 16)); // NOI18N
+        txtEmail.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 153, 153)));
+        txtEmail.setSelectionColor(new java.awt.Color(0, 153, 153));
 
         btnLogin.setBackground(new java.awt.Color(0, 153, 153));
         btnLogin.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
@@ -168,7 +168,7 @@ public class Login extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, body_mostradeputado2Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, body_mostradeputado2Layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -186,7 +186,7 @@ public class Login extends javax.swing.JFrame {
                 .addGap(55, 55, 55)
                 .addGroup(body_mostradeputado2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(body_mostradeputado2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -230,6 +230,7 @@ public class Login extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
     int xx;
     int xy;
@@ -262,20 +263,16 @@ public class Login extends javax.swing.JFrame {
 
             BancoUsuarios banco = new BancoUsuarios();
             banco.connect();
-            List<Usuario> users = banco.pegaDados();
-            String nome = txtNome.getText();
+            String email = txtEmail.getText();
             String senha = txtSenha.getText();
 
-            for (int x = 0; x < users.size(); x++) {
-                if (nome.equals(users.get(x).getNome())) {
-
-                    if (senha.equals(users.get(x).getSenha())) {
-                        
-                        new Politicos().setVisible(true);
-                        this.dispose();
-                        break;
-                    }
-                }
+            Usuario usuario = banco.login(email, senha);
+            if (usuario == null) {
+                JOptionPane.showMessageDialog(null,
+                        " USUARIO/SENHA INVALIDO(S) ");
+            } else {
+                new Politicos(usuario).setVisible(true);
+                this.dispose();
             }
             banco.disconnect();
 
@@ -346,7 +343,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.ButtonGroup radPesquisa;
     private javax.swing.JLabel subtitulo;
     private javax.swing.JLabel titulo;
-    private javax.swing.JTextField txtNome;
+    private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtSenha;
     // End of variables declaration//GEN-END:variables
 }
