@@ -1261,14 +1261,13 @@ public class Politicos extends javax.swing.JFrame {
         resetLblColor(btnPesquisa);
         resetLblColor(btnUsuarios);
         limpaTela();
-        
+
         this.txtNome.setText(usuario.getNome());
         this.txtEmail.setText(usuario.getEmail());
         this.txtCPF.setText(usuario.getCpf());
         this.txtIdeologia.setText(usuario.getIdeologia());
         //this.txtSenha.setText(usuario.getSenha());
-        
-        
+
         MinhaConta.setVisible(true);
     }//GEN-LAST:event_btnMinhaContaMouseClicked
 
@@ -1331,14 +1330,14 @@ public class Politicos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPesquisarDeputado4ActionPerformed
 
     private void btnAlterarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlterarMouseClicked
-           boolean certo = true;
+        boolean certo = true;
         try {
 
             usuario.setNome(txtNome.getText());
             usuario.setCpf(txtCPF.getText());
             usuario.setEmail(txtEmail.getText());
             usuario.setIdeologia(txtIdeologia.getText());
-               
+
             BancoUsuarios bd = new BancoUsuarios(usuario);
 
             bd.connect();
@@ -1350,14 +1349,33 @@ public class Politicos extends javax.swing.JFrame {
                     "Um erro ocorreu: " + erro);
         } finally {
             if (certo) {
-               JOptionPane.showMessageDialog(null,
-                    "Alteração Salva com Sucesso ");
+                JOptionPane.showMessageDialog(null,
+                        "Alteração Salva com Sucesso ");
             }
         }
     }//GEN-LAST:event_btnAlterarMouseClicked
 
     private void btnExcluirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExcluirMouseClicked
-        // TODO add your handling code here:
+        boolean certo = true;
+        try {
+
+            BancoUsuarios bd = new BancoUsuarios(usuario);
+
+            bd.connect();
+            bd.excluir();
+            bd.disconnect();
+        } catch (Exception erro) {
+            certo = false;
+            JOptionPane.showMessageDialog(null,
+                    "Um erro ocorreu: " + erro);
+        } finally {
+            if (certo) {
+                JOptionPane.showMessageDialog(null,
+                        "Excluido com Sucesso ");
+                new Login().setVisible(true);
+                this.dispose();
+            }
+        }
     }//GEN-LAST:event_btnExcluirMouseClicked
 
     private void btnLogin5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLogin5MouseClicked
@@ -1387,7 +1405,7 @@ public class Politicos extends javax.swing.JFrame {
     private void btnMudarSenhaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMudarSenhaMouseClicked
         // TODO add your handling code here:
         new AlterarSenha(usuario).setVisible(true);
-        
+
     }//GEN-LAST:event_btnMudarSenhaMouseClicked
 
     private void btnPesquisarDeputado4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPesquisarDeputado4MouseClicked

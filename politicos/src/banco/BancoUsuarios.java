@@ -82,10 +82,10 @@ public class BancoUsuarios {
     }
 
     public void excluir() {
-        fsql = "DELETE FROM usuarios where id_usuario=" + this.user.getIdUsuario() + ";";
+        fsql = "DELETE FROM usuarios where id_usuario=?;";
         try {
             pstmt = con.prepareStatement(fsql);
-            pstmt.setInt(1, bdid);
+            pstmt.setString(1, this.user.getIdUsuario());
             pstmt.execute();
             pstmt.close();
         } catch (Exception erro) {
