@@ -151,7 +151,6 @@ public class BancoUsuarios {
         try {
            this.stmt = con.createStatement();
             this.rs = stmt.executeQuery(fsql);
-            int x = 0;
             while (rs.next()) {
                 /*
                  bdid = rs.getInt("id_usuario");
@@ -172,7 +171,6 @@ public class BancoUsuarios {
                 
                 this.user = null;
                 this.user = new Usuario();
-                x++;
             }///while
             stmt.close();
         } catch (Exception erro) {
@@ -189,8 +187,7 @@ public class BancoUsuarios {
         fsql = "SELECT * FROM usuarios WHERE id_usuario=? AND status=1;";
         try {
             pstmt = con.prepareStatement(fsql);
-            int idd = Integer.parseInt(id);
-            pstmt.setInt(1, idd);
+            pstmt.setString(1, id);
             rs = pstmt.executeQuery();
             if (rs.next()) {
                 this.user = null;

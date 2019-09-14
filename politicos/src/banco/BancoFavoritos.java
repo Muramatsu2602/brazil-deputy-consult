@@ -18,23 +18,31 @@ public class BancoFavoritos {
     private Statement stmt;
 
     // CAMPOS DA TABELA
-    private int id_favoritos;
-    private String nome;
-    private int usuario_id;
-    private int deputado_id;
-    private String partido;
-    private int status;
-    private String foto; // TESTAR PRIMEIRO SEM ELA
-
+   
+    private Favorito fav;
+    
     public BancoFavoritos() {
         bdid = 0;
         bdtipo = "";
         fsql = "";
         con = null;
         usuario = "postgres";
-        senha_banco = "a";
+        senha_banco = "postgres";
         drive = "org.postgresql.Driver";
         url = "jdbc:postgresql://localhost:5432/politicos";
+        fav = new Favorito();
+        //url="jdbc:postgresql://200.145.153.163:5432/banco73b2017";  
+    }
+      public BancoFavoritos(Favorito fav) {
+        bdid = 0;
+        bdtipo = "";
+        fsql = "";
+        con = null;
+        usuario = "postgres";
+        senha_banco = "postgres";
+        drive = "org.postgresql.Driver";
+        url = "jdbc:postgresql://localhost:5432/politicos";
+        this.fav = fav;
         //url="jdbc:postgresql://200.145.153.163:5432/banco73b2017";  
     }
 
@@ -42,22 +50,23 @@ public class BancoFavoritos {
     public void incluir()//pkchave (chamada,turma)
     {
         fsql = "INSERT INTO favoritos ("
+                
+                + "id_deputado,"
                 + "nome,"
                 + "usuario_id,"
-                + "deputado_id,"
                 + "partido,"
-                + "foto,"
+                + "estado,"
                 + "status,"
                 + ")"
                 + "VALUES (?,?,?,?,?,?)";
         try {
             pstmt = con.prepareStatement(fsql);
             // pstmt.setInt(1, this.id_favoritos);
-            pstmt.setString(1, this.nome);
-            pstmt.setInt(2, this.usuario_id);
-            pstmt.setInt(3, this.deputado_id);
-            pstmt.setString(4, this.partido);
-            pstmt.setString(5, this.foto);
+            pstmt.setString(1, this.fav.getIdDeputado());
+            pstmt.setString(2, this.fav.getNome());
+            pstmt.setString(3, this.fav.getUsuarioId());
+            pstmt.setString(4, this.fav.getPartido());
+            pstmt.setString(5, this.fav.getEstado());
             pstmt.setInt(6, 1);
 
             pstmt.execute();
@@ -72,7 +81,7 @@ public class BancoFavoritos {
         fsql = "DELETE FROM favoritos WHERE id_favoritos=?";
         try {
             pstmt = con.prepareStatement(fsql);
-            pstmt.setInt(1, this.id_favoritos);
+            pstmt.setString(1, this.fav.getIdDeputado());
             pstmt.execute();
             pstmt.close();
         } catch (Exception erro) {
@@ -86,16 +95,16 @@ public class BancoFavoritos {
         fsql = "UPDATE favoritos SET"
                 + " nome=?"
                 + ", partido=?"
-                + ", foto=?"
+                + ", estado=?"
                 + "WHERE id_favoritos=? ;";
         try {
             pstmt = con.prepareStatement(fsql);
 
             //pstmt.setString(1,bdnome);
-            pstmt.setString(1, this.nome);
-            pstmt.setString(2, this.partido);
-            pstmt.setString(3, this.foto);
-            pstmt.setInt(4, this.id_favoritos);
+            pstmt.setString(1, this.fav.getNome());
+            pstmt.setString(2, this.fav.getPartido());
+            pstmt.setString(3, this.fav.getEstado());
+            pstmt.setString(4, this.fav.getIdDeputado());
             pstmt.execute();
             pstmt.close();
         } catch (Exception erro) {
@@ -124,7 +133,7 @@ public class BancoFavoritos {
         }
     } ///////////desconecta
 
-    public ArrayList pegadados() {
+    public ArrayList<Favorito> pegadados() {
         ArrayList dados;
         dados = new ArrayList();
         fsql = "SELECT * FROM favoritos WHERE status=1;";
@@ -138,19 +147,16 @@ public class BancoFavoritos {
                  dados.add(bdid);
                  dados.add(bdtipo);*/
 
-                this.id_favoritos = rs.getInt("id_favoritos");
-                this.nome = rs.getString("nome");
-                this.deputado_id = rs.getInt("deputado_id");
-                this.partido = rs.getString("partido");
-                this.foto = rs.getString("foto");
-                this.status = rs.getInt("status");
-
-                dados.add(id_favoritos);
-                dados.add(nome);
-                dados.add(deputado_id);
-                dados.add(partido);
-                dados.add(foto);
-                dados.add(status);
+                this.fav.setIdDeputado(rs.getString("id_deputado"));
+                this.fav.setNome( rs.getString("nome"));
+                this.fav.setEstado(rs.getString("estado"));
+                this.fav.setPartido(rs.getString("partido"));
+                this.fav.setUsuarioId(rs.getString("usuario_id"));
+                this.fav.setStatus(rs.getInt("status"));
+                dados.add(this.fav);
+                
+                this.fav = null;
+                this.fav = new Favorito();
 
                 /*
                  private String nome;
@@ -240,68 +246,5 @@ public class BancoFavoritos {
      b2.incluir();
      b2.disconnect();
      }*/
-    // ENCAPSULAMENTO
-    public void setId(String c) {
-        bdid = Integer.parseInt(c);
-    }
-
-    public void setTipo(String n) {
-        bdtipo = n;
-    }
-
-    public int getId() {
-        return bdid;
-    }
-
-    public String getTipo() {
-        return bdtipo;
-    }
-
-    public int getId_favoritos() {
-        return id_favoritos;
-    }
-
-    public void setId_favoritos(int id_favoritos) {
-        this.id_favoritos = id_favoritos;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public int getUsuario_id() {
-        return usuario_id;
-    }
-
-    public void setUsuario_id(int usuario_id) {
-        this.usuario_id = usuario_id;
-    }
-
-    public int getDeputado_id() {
-        return deputado_id;
-    }
-
-    public void setDeputado_id(int deputado_id) {
-        this.deputado_id = deputado_id;
-    }
-
-    public String getPartido() {
-        return partido;
-    }
-
-    public void setPartido(String partido) {
-        this.partido = partido;
-    }
-
-    public String getFoto() {
-        return foto;
-    }
-
-    public void setFoto(String foto) {
-        this.foto = foto;
-    }
+ 
 }// CLASS
