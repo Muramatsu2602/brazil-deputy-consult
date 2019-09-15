@@ -1,0 +1,21 @@
+-- Table: public.favoritos
+
+ DROP TABLE public.favoritos;
+
+CREATE TABLE public.favoritos
+(
+    id_favorito character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    nome        character varying(200) COLLATE pg_catalog."default" NOT NULL,
+    usuario_id  character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    deputado_id integer NOT NULL,
+    partido character varying(10) COLLATE pg_catalog."default" NOT NULL,
+    estado character varying(200) COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT favoritos_pkey PRIMARY KEY (id_favorito)
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE public.favoritos
+    OWNER to postgres;

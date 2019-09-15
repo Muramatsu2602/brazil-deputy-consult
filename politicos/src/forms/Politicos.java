@@ -9,6 +9,8 @@ import banco.BancoUsuarios;
 import banco.BancoFavoritos;
 import banco.Usuario;
 import banco.Favorito;
+import banco.RelatorioFavorito;
+import banco.RelatorioUsuario;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -31,6 +33,7 @@ public class Politicos extends javax.swing.JFrame {
 
     Usuario usuario;
     Usuario usuario_view;
+
     /**
      * Creates new form Home15
      */
@@ -85,17 +88,19 @@ public class Politicos extends javax.swing.JFrame {
         txtCPFUsuario = new javax.swing.JTextField();
         jScrollPane6 = new javax.swing.JScrollPane();
         tblDeputado3 = new javax.swing.JTable();
-        btnPesquisarDeputado3 = new javax.swing.JButton();
+        btnGerarRelatorioPoliticos = new javax.swing.JButton();
         jTextField5 = new javax.swing.JTextField();
         btnAlterarUsuario = new javax.swing.JLabel();
         btnExcluirUsuario = new javax.swing.JLabel();
         jLabel41 = new javax.swing.JLabel();
         btnLogin8 = new javax.swing.JLabel();
+        btnPesquisarDeputado5 = new javax.swing.JButton();
         Usuarios = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         tblUsuario = new javax.swing.JTable();
         jTextField3 = new javax.swing.JTextField();
         btnPesquisarUsuario = new javax.swing.JButton();
+        btnGerarRelatorioUsuario = new javax.swing.JButton();
         MinhaConta = new javax.swing.JPanel();
         body_mostradeputado5 = new javax.swing.JPanel();
         jLabel42 = new javax.swing.JLabel();
@@ -117,6 +122,7 @@ public class Politicos extends javax.swing.JFrame {
         btnExcluir = new javax.swing.JLabel();
         jLabel48 = new javax.swing.JLabel();
         btnMudarSenha = new javax.swing.JLabel();
+        btnGerarRelatorioPoliticos2 = new javax.swing.JButton();
         MostraDeputado = new javax.swing.JPanel();
         body_mostradeputado = new javax.swing.JPanel();
         lblImg = new javax.swing.JLabel();
@@ -238,15 +244,18 @@ public class Politicos extends javax.swing.JFrame {
             .addGroup(headerLayout.createSequentialGroup()
                 .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(headerLayout.createSequentialGroup()
-                        .addGap(68, 68, 68)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(headerLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(subtitulo))
+                        .addComponent(titulo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(headerLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(titulo)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(headerLayout.createSequentialGroup()
+                                .addGap(68, 68, 68)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(headerLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(subtitulo)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, headerLayout.createSequentialGroup()
                         .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -271,19 +280,19 @@ public class Politicos extends javax.swing.JFrame {
                         .addGap(27, 27, 27))
                     .addComponent(titulo, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(headerLayout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(subtitulo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, headerLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnMinhaConta, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(36, 36, 36))))
+                        .addGap(36, 36, 36))
+                    .addGroup(headerLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(subtitulo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(67, Short.MAX_VALUE))))
         );
 
         btnPesquisa.getAccessibleContext().setAccessibleName("Políticos");
@@ -360,7 +369,7 @@ public class Politicos extends javax.swing.JFrame {
         body_pesquisa.setLayout(body_pesquisaLayout);
         body_pesquisaLayout.setHorizontalGroup(
             body_pesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 943, Short.MAX_VALUE)
             .addGroup(body_pesquisaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(body_pesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -492,10 +501,11 @@ public class Politicos extends javax.swing.JFrame {
             tblDeputado3.getColumnModel().getColumn(3).setResizable(false);
         }
 
-        btnPesquisarDeputado3.setText("Pesquisar");
-        btnPesquisarDeputado3.addActionListener(new java.awt.event.ActionListener() {
+        btnGerarRelatorioPoliticos.setBackground(new java.awt.Color(255, 51, 255));
+        btnGerarRelatorioPoliticos.setText("Relatório");
+        btnGerarRelatorioPoliticos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPesquisarDeputado3ActionPerformed(evt);
+                btnGerarRelatorioPoliticosActionPerformed(evt);
             }
         });
 
@@ -537,6 +547,13 @@ public class Politicos extends javax.swing.JFrame {
         btnLogin8.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnLogin8MouseClicked(evt);
+            }
+        });
+
+        btnPesquisarDeputado5.setText("Pesquisar");
+        btnPesquisarDeputado5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesquisarDeputado5ActionPerformed(evt);
             }
         });
 
@@ -588,12 +605,14 @@ public class Politicos extends javax.swing.JFrame {
                         .addComponent(jLabel41)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, body_mostradeputado4Layout.createSequentialGroup()
-                        .addComponent(jTextField5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnPesquisarDeputado3)
+                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnPesquisarDeputado5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnGerarRelatorioPoliticos)
                         .addContainerGap())
                     .addGroup(body_mostradeputado4Layout.createSequentialGroup()
-                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 509, Short.MAX_VALUE)
                         .addGap(11, 11, 11))))
         );
         body_mostradeputado4Layout.setVerticalGroup(
@@ -606,7 +625,8 @@ public class Politicos extends javax.swing.JFrame {
                             .addGroup(body_mostradeputado4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel40, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnPesquisarDeputado3)))
+                                .addComponent(btnGerarRelatorioPoliticos)
+                                .addComponent(btnPesquisarDeputado5)))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, body_mostradeputado4Layout.createSequentialGroup()
                             .addContainerGap()
                             .addComponent(txtNomeUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -643,7 +663,7 @@ public class Politicos extends javax.swing.JFrame {
                 .addGroup(body_mostradeputado4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel36)
                     .addComponent(lblIL4))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 119, Short.MAX_VALUE))
         );
 
         MostraUsuario.add(body_mostradeputado4);
@@ -710,6 +730,19 @@ public class Politicos extends javax.swing.JFrame {
             }
         });
 
+        btnGerarRelatorioUsuario.setBackground(new java.awt.Color(255, 204, 255));
+        btnGerarRelatorioUsuario.setText("Relatorio");
+        btnGerarRelatorioUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnGerarRelatorioUsuarioMouseClicked(evt);
+            }
+        });
+        btnGerarRelatorioUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGerarRelatorioUsuarioActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout UsuariosLayout = new javax.swing.GroupLayout(Usuarios);
         Usuarios.setLayout(UsuariosLayout);
         UsuariosLayout.setHorizontalGroup(
@@ -717,17 +750,20 @@ public class Politicos extends javax.swing.JFrame {
             .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 943, Short.MAX_VALUE)
             .addGroup(UsuariosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTextField3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 568, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnPesquisarUsuario)
-                .addGap(8, 8, 8))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnGerarRelatorioUsuario)
+                .addContainerGap())
         );
         UsuariosLayout.setVerticalGroup(
             UsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, UsuariosLayout.createSequentialGroup()
                 .addGroup(UsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPesquisarUsuario))
+                    .addComponent(btnPesquisarUsuario)
+                    .addComponent(btnGerarRelatorioUsuario))
                 .addGap(27, 27, 27)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE))
         );
@@ -883,6 +919,19 @@ public class Politicos extends javax.swing.JFrame {
             }
         });
 
+        btnGerarRelatorioPoliticos2.setBackground(new java.awt.Color(255, 51, 255));
+        btnGerarRelatorioPoliticos2.setText("Relatório");
+        btnGerarRelatorioPoliticos2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnGerarRelatorioPoliticos2MouseClicked(evt);
+            }
+        });
+        btnGerarRelatorioPoliticos2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGerarRelatorioPoliticos2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout body_mostradeputado5Layout = new javax.swing.GroupLayout(body_mostradeputado5);
         body_mostradeputado5.setLayout(body_mostradeputado5Layout);
         body_mostradeputado5Layout.setHorizontalGroup(
@@ -932,12 +981,14 @@ public class Politicos extends javax.swing.JFrame {
                         .addComponent(jLabel48)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, body_mostradeputado5Layout.createSequentialGroup()
-                        .addComponent(jTextField6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(btnPesquisarDeputado4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnGerarRelatorioPoliticos2)
                         .addContainerGap())
                     .addGroup(body_mostradeputado5Layout.createSequentialGroup()
-                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 531, Short.MAX_VALUE)
                         .addGap(11, 11, 11))))
         );
         body_mostradeputado5Layout.setVerticalGroup(
@@ -950,7 +1001,8 @@ public class Politicos extends javax.swing.JFrame {
                             .addGroup(body_mostradeputado5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel47, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnPesquisarDeputado4)))
+                                .addComponent(btnPesquisarDeputado4)
+                                .addComponent(btnGerarRelatorioPoliticos2)))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, body_mostradeputado5Layout.createSequentialGroup()
                             .addContainerGap()
                             .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -985,7 +1037,7 @@ public class Politicos extends javax.swing.JFrame {
                 .addGroup(body_mostradeputado5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel43)
                     .addComponent(lblIL5))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 119, Short.MAX_VALUE))
         );
 
         MinhaConta.add(body_mostradeputado5);
@@ -1231,35 +1283,32 @@ public class Politicos extends javax.swing.JFrame {
         int selectedRowIndex = tblDeputado.getSelectedRow();
         String id_deputado = model.getValueAt(selectedRowIndex, 0).toString();
 
-       
         BancoFavoritos bd = new BancoFavoritos();
         List<Favorito> dados = bd.pegadados();
         btnFavoritar.setText("Favoritar");
-       
-        
+
         try {
-             for(int x = 0; x<dados.size(); x++){
-            if(dados.get(x).getIdDeputado().equals(id_deputado)){
-                btnFavoritar.setText("Desfavoritar");
-                break;
+            for (int x = 0; x < dados.size(); x++) {
+                if (dados.get(x).getIdDeputado().equals(id_deputado)) {
+                    btnFavoritar.setText("Desfavoritar");
+                    break;
+                }
             }
-        }
             imprimirSelecao(id_deputado);
         } catch (JSONException ex) {
             certo = false;
             Logger.getLogger(Politicos.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        finally{
-           if(certo){
+        } finally {
+            if (certo) {
                 limpaTela();
-   
-        btnPesquisa.setVisible(false);
-        btnUsuarios.setVisible(false);
-        btnMinhaConta.setVisible(false);
-        btnVoltar.setVisible(true);
-        txtDiscurso.setText("");
-          MostraDeputado.setVisible(true);
-           }
+
+                btnPesquisa.setVisible(false);
+                btnUsuarios.setVisible(false);
+                btnMinhaConta.setVisible(false);
+                btnVoltar.setVisible(true);
+                txtDiscurso.setText("");
+                MostraDeputado.setVisible(true);
+            }
         }
 
     }//GEN-LAST:event_tblDeputadoMouseClicked
@@ -1321,9 +1370,8 @@ public class Politicos extends javax.swing.JFrame {
         MostraUsuario.setVisible(true);
         txtDiscurso.setText("");
 
-       
-            imprimirSelecaoUsuario();
-       
+        imprimirSelecaoUsuario();
+
 
     }//GEN-LAST:event_tblUsuarioMouseClicked
 
@@ -1338,24 +1386,23 @@ public class Politicos extends javax.swing.JFrame {
     private void btnFavoritarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFavoritarMouseClicked
         new Politicos(null).setVisible(true);
         this.dispose();
-        
+
         boolean certo = false;
         Favorito fav = new Favorito(
-             subtitulo.getText(),
-             titulo.getText(),
-             this.usuario.getIdUsuario(),
-             lblPartido.getText(),
-             lblUf.getText(),
-             1
+                subtitulo.getText(),
+                titulo.getText(),
+                this.usuario.getIdUsuario(),
+                lblPartido.getText(),
+                lblUf.getText(),
+                1
         );
         BancoFavoritos banco = new BancoFavoritos(fav);
-        
-        try{
+
+        try {
             banco.connect();
             banco.incluir();
             banco.disconnect();
-        }
-        catch (Exception erro) {
+        } catch (Exception erro) {
             certo = false;
             JOptionPane.showMessageDialog(null,
                     "Um erro ocorreu: " + erro);
@@ -1366,8 +1413,8 @@ public class Politicos extends javax.swing.JFrame {
                 btnFavoritar.setText("Desfavoritar");
             }
         }
-            
-        
+
+
     }//GEN-LAST:event_btnFavoritarMouseClicked
 
     private void txtIdeologiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdeologiaActionPerformed
@@ -1432,9 +1479,9 @@ public class Politicos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnExcluirMouseClicked
 
     private void btnExcluirUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExcluirUsuarioMouseClicked
-               boolean certo = true;
+        boolean certo = true;
         try {
-            
+
             BancoUsuarios bd = new BancoUsuarios(usuario_view);
 
             bd.connect();
@@ -1455,7 +1502,7 @@ public class Politicos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnExcluirUsuarioMouseClicked
 
     private void btnAlterarUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlterarUsuarioMouseClicked
-            boolean certo = true;
+        boolean certo = true;
         try {
 
             usuario_view.setNome(txtNomeUsuario.getText());
@@ -1480,9 +1527,9 @@ public class Politicos extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnAlterarUsuarioMouseClicked
 
-    private void btnPesquisarDeputado3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarDeputado3ActionPerformed
+    private void btnGerarRelatorioPoliticosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGerarRelatorioPoliticosActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnPesquisarDeputado3ActionPerformed
+    }//GEN-LAST:event_btnGerarRelatorioPoliticosActionPerformed
 
     private void tblDeputado3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDeputado3MouseClicked
         // TODO add your handling code here:
@@ -1505,6 +1552,30 @@ public class Politicos extends javax.swing.JFrame {
     private void btnPesquisarDeputado4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPesquisarDeputado4MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_btnPesquisarDeputado4MouseClicked
+
+    private void btnGerarRelatorioUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGerarRelatorioUsuarioMouseClicked
+        // TODO add your handling code here:
+        RelatorioUsuario rel = new RelatorioUsuario();
+        rel.relatorioUsuario();
+    }//GEN-LAST:event_btnGerarRelatorioUsuarioMouseClicked
+
+    private void btnGerarRelatorioUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGerarRelatorioUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnGerarRelatorioUsuarioActionPerformed
+
+    private void btnPesquisarDeputado5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarDeputado5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPesquisarDeputado5ActionPerformed
+
+    private void btnGerarRelatorioPoliticos2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGerarRelatorioPoliticos2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnGerarRelatorioPoliticos2ActionPerformed
+
+    private void btnGerarRelatorioPoliticos2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGerarRelatorioPoliticos2MouseClicked
+        // TODO add your handling code here:
+        RelatorioFavorito favorito = new RelatorioFavorito();
+        favorito.relatorioFavorito(this.usuario.getIdUsuario());
+    }//GEN-LAST:event_btnGerarRelatorioPoliticos2MouseClicked
 
     // troca a cor dos botões
     public List<Deputado> todos_deputados;
@@ -1542,7 +1613,8 @@ public class Politicos extends javax.swing.JFrame {
             }
         }
     }
-    public void imprimirSelecaoUsuario(){
+
+    public void imprimirSelecaoUsuario() {
         titulo.setText(usuario_view.getNome());
         subtitulo.setText(usuario_view.getIdUsuario());
         txtNomeUsuario.setText(usuario_view.getNome());
@@ -1550,6 +1622,7 @@ public class Politicos extends javax.swing.JFrame {
         txtIdeologiaUsuario.setText(usuario_view.getIdeologia());
         txtCPFUsuario.setText(usuario_view.getCpf());
     }
+
     public void imprimirMinhaConta() {
         BancoUsuarios banco = new BancoUsuarios();
         //   Usuario user = banco.procura();
@@ -1685,13 +1758,16 @@ public class Politicos extends javax.swing.JFrame {
     private javax.swing.JLabel btnExcluir;
     private javax.swing.JLabel btnExcluirUsuario;
     private javax.swing.JLabel btnFavoritar;
+    private javax.swing.JButton btnGerarRelatorioPoliticos;
+    private javax.swing.JButton btnGerarRelatorioPoliticos2;
+    private javax.swing.JButton btnGerarRelatorioUsuario;
     private javax.swing.JLabel btnLogin8;
     private javax.swing.JLabel btnMinhaConta;
     private javax.swing.JLabel btnMudarSenha;
     private javax.swing.JLabel btnPesquisa;
     private javax.swing.JButton btnPesquisarDeputado;
-    private javax.swing.JButton btnPesquisarDeputado3;
     private javax.swing.JButton btnPesquisarDeputado4;
+    private javax.swing.JButton btnPesquisarDeputado5;
     private javax.swing.JButton btnPesquisarUsuario;
     private javax.swing.JLabel btnUsuarios;
     private javax.swing.JLabel btnVoltar;

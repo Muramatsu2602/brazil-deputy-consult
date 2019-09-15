@@ -234,6 +234,27 @@ public class BancoFavoritos {
         }
         return volta;
     }
+    
+    
+    
+    // ENCAPSULAMENTO
+    public void setId(String c) {
+        bdid = Integer.parseInt(c);
+    }
+
+    public void setTipo(String n) {
+        bdtipo = n;
+    }
+
+    public int getId() {
+        return bdid;
+    }
+
+    public String getTipo() {
+        return bdtipo;
+    }
+    
+    
 
     /*
     
