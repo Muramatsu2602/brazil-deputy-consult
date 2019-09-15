@@ -52,14 +52,15 @@ public class RelatorioFavorito {
             con = DriverManager.getConnection(url, usuario, senha_banco);
             stmt = con.createStatement();
 
-            String sql = "Select * from favoritos WHERE usuario_id ='"+id+"';";
-            // TUDO AQUI  GERAR UM ARQUIVO TIPO PDF    		
+            String sql = "Select * from favoritos WHERE usuario_id ='" + id + "';";
+
+// TUDO AQUI  GERAR UM ARQUIVO TIPO PDF    		
             rs = stmt.executeQuery(sql);
 
-            /* implementação da interface JRDataSource para DataSource ResultSet */
+            // implementação da interface JRDataSource para DataSource ResultSet 
             jrRS = new JRResultSetDataSource(rs);
             parametros = new HashMap();
-   //         parametros.put("usuario_id", id);
+            //         parametros.put("usuario_id", id);
 
             jasperR = JasperCompileManager.compileReport("C:\\politicosJava\\reportFavoritos.jrxml");
 
@@ -73,13 +74,13 @@ public class RelatorioFavorito {
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
-//TUDO AQUI E PARA GERAR UM ARQUIVO JASPERVIEW
 
+//TUDO AQUI E PARA GERAR UM ARQUIVO JASPERVIEW
             rs = stmt.executeQuery(sql);
             System.out.println("sql: " + sql);
             jrRS = new JRResultSetDataSource(rs);
             parametros = new HashMap();
-          //  parametros.put("usuario_id", id);
+            //  parametros.put("usuario_id", id);
 
             JasperPrint impressao = JasperFillManager.fillReport("C:\\politicosJava\\reportFavoritos.jasper", parametros, jrRS);
             //exibe o resultado
