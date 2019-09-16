@@ -1530,7 +1530,7 @@ public class Politicos extends javax.swing.JFrame {
     private void btnGerarRelatorioPoliticosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGerarRelatorioPoliticosActionPerformed
         // TODO add your handling code here:
         RelatorioFavorito favorito = new RelatorioFavorito();
-        favorito.relatorioFavorito(this.usuario.getIdUsuario());
+        favorito.relatorioFavorito(subtitulo.getText());
         
     }//GEN-LAST:event_btnGerarRelatorioPoliticosActionPerformed
 
