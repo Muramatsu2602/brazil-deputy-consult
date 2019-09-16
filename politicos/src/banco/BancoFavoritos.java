@@ -174,22 +174,33 @@ public class BancoFavoritos {
         return dados;
     }//pegadados
 
-    public boolean procura(String id) {
-        fsql = "SELECT * FROM usuarios WHERE id_favoritos=? AND status=1;";
+    public List<Favorito> procura(String id) {
+        fsql = "SELECT * FROM favoritos WHERE usuario_id=? AND status=1;";
+        List favs = new ArrayList();
+        Favorito fav = new Favorito();
         try {
             pstmt = con.prepareStatement(fsql);
-            int idd = Integer.parseInt(id);
-            pstmt.setInt(1,idd);
+            pstmt.setString(1,id);
             rs = pstmt.executeQuery();
-            if (rs.next()) {
-                return true;//achou
+            while (rs.next()) {
+                fav.setPartido(rs.getString("partido"));
+                fav.setNome(rs.getString("nome"));
+                fav.setStatus(rs.getInt("status"));
+                fav.setIdDeputado(rs.getString("id_deputado"));
+                fav.setEstado(rs.getString("estado"));
+                fav.setUsuarioId(rs.getString("usuario_id"));
+                fav = null;
+                fav = new Favorito();
+                favs.add(fav);
+                
             }
             pstmt.close();
+            return favs;
         } catch (Exception erroi) {
             JOptionPane.showMessageDialog(null,
                     " Erro procura do id_favoritos (" + id + ")-->" + erroi);
         }
-        return false;
+        return null;
     }//procura 
 
     /*
