@@ -29,7 +29,7 @@ public class BancoFavoritos {
         usuario = "postgres";
         senha_banco = "postgres";
         drive = "org.postgresql.Driver";
-        url = "jdbc:postgresql://localhost:5432/politicos";
+        url = "jdbc:postgresql://localhost:5432/PoliticosJava";
         fav = new Favorito();
         //url="jdbc:postgresql://200.145.153.163:5432/banco73b2017";  
     }
@@ -41,7 +41,7 @@ public class BancoFavoritos {
         usuario = "postgres";
         senha_banco = "postgres";
         drive = "org.postgresql.Driver";
-        url = "jdbc:postgresql://localhost:5432/politicos";
+        url = "jdbc:postgresql://localhost:5432/PoliticosJava";
         this.fav = fav;
         //url="jdbc:postgresql://200.145.153.163:5432/banco73b2017";  
     }
@@ -56,7 +56,7 @@ public class BancoFavoritos {
                 + "usuario_id,"
                 + "partido,"
                 + "estado,"
-                + "status,"
+                + "status"
                 + ")"
                 + "VALUES (?,?,?,?,?,?)";
         try {

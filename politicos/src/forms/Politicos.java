@@ -1677,7 +1677,30 @@ public class Politicos extends javax.swing.JFrame {
             model.addRow(rowData);
         }
     }
+  private void imprimirFavoritos() {
+       
+        DefaultTableModel model = (DefaultTableModel) tblDeputado.getModel();
 
+        model.setRowCount(0);
+        List<Deputado> y = null;
+        if (jRadioButton1.isSelected()) {
+            y = Capi.pesquisaDeputados("nome", pesquisa, this.todos_deputados);
+        }
+        if (jRadioButton2.isSelected()) {
+            y = Capi.pesquisaDeputados("id", pesquisa, this.todos_deputados);
+        }
+        if (jRadioButton3.isSelected()) {
+            y = Capi.pesquisaDeputados("partido", pesquisa, this.todos_deputados);
+        }
+        String rowData[] = new String[4];
+        for (int x = 0; x < y.size(); x++) {
+            rowData[0] = y.get(x).getId();
+            rowData[1] = y.get(x).getNome();
+            rowData[2] = y.get(x).getSiglaPartido();
+            rowData[3] = y.get(x).getSiglaUf();
+            model.addRow(rowData);
+        }
+    }
     private void imprimirUsuarios() {
         BancoUsuarios banco = new BancoUsuarios();
         banco.connect();
