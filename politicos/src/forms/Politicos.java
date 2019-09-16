@@ -135,7 +135,7 @@ public class Politicos extends javax.swing.JFrame {
         txtIdeologia = new javax.swing.JTextField();
         txtCPF = new javax.swing.JTextField();
         jScrollPane7 = new javax.swing.JScrollPane();
-        tblDeputado4 = new javax.swing.JTable();
+        tblMeusFavoritos = new javax.swing.JTable();
         btnPesquisarFavoritosMC = new javax.swing.JButton();
         jTextField6 = new javax.swing.JTextField();
         btnAlterar = new javax.swing.JLabel();
@@ -982,9 +982,9 @@ public class Politicos extends javax.swing.JFrame {
         jScrollPane7.setBackground(new java.awt.Color(255, 255, 255));
         jScrollPane7.setBorder(null);
 
-        tblDeputado4.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        tblDeputado4.setForeground(new java.awt.Color(51, 51, 51));
-        tblDeputado4.setModel(new javax.swing.table.DefaultTableModel(
+        tblMeusFavoritos.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        tblMeusFavoritos.setForeground(new java.awt.Color(51, 51, 51));
+        tblMeusFavoritos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -1007,20 +1007,20 @@ public class Politicos extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tblDeputado4.setGridColor(new java.awt.Color(255, 255, 255));
-        tblDeputado4.setRowHeight(20);
-        tblDeputado4.setSelectionBackground(new java.awt.Color(0, 153, 153));
-        tblDeputado4.addMouseListener(new java.awt.event.MouseAdapter() {
+        tblMeusFavoritos.setGridColor(new java.awt.Color(255, 255, 255));
+        tblMeusFavoritos.setRowHeight(20);
+        tblMeusFavoritos.setSelectionBackground(new java.awt.Color(0, 153, 153));
+        tblMeusFavoritos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblDeputado4MouseClicked(evt);
+                tblMeusFavoritosMouseClicked(evt);
             }
         });
-        jScrollPane7.setViewportView(tblDeputado4);
-        if (tblDeputado4.getColumnModel().getColumnCount() > 0) {
-            tblDeputado4.getColumnModel().getColumn(0).setResizable(false);
-            tblDeputado4.getColumnModel().getColumn(1).setResizable(false);
-            tblDeputado4.getColumnModel().getColumn(2).setResizable(false);
-            tblDeputado4.getColumnModel().getColumn(3).setResizable(false);
+        jScrollPane7.setViewportView(tblMeusFavoritos);
+        if (tblMeusFavoritos.getColumnModel().getColumnCount() > 0) {
+            tblMeusFavoritos.getColumnModel().getColumn(0).setResizable(false);
+            tblMeusFavoritos.getColumnModel().getColumn(1).setResizable(false);
+            tblMeusFavoritos.getColumnModel().getColumn(2).setResizable(false);
+            tblMeusFavoritos.getColumnModel().getColumn(3).setResizable(false);
         }
 
         btnPesquisarFavoritosMC.setText("Pesquisar");
@@ -1418,9 +1418,9 @@ public class Politicos extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIdeologiaActionPerformed
 
-    private void tblDeputado4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDeputado4MouseClicked
+    private void tblMeusFavoritosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMeusFavoritosMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_tblDeputado4MouseClicked
+    }//GEN-LAST:event_tblMeusFavoritosMouseClicked
 
     private void btnPesquisarFavoritosMCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarFavoritosMCActionPerformed
         this.imprimirFavoritos();
@@ -1680,7 +1680,7 @@ public class Politicos extends javax.swing.JFrame {
         banco.connect();
         List<Favorito> favs = banco.procura(usuario.getIdUsuario());
         banco.disconnect();
-        DefaultTableModel model = (DefaultTableModel) tblUsuario.getModel();
+        DefaultTableModel model = (DefaultTableModel) tblMeusFavoritos.getModel();
         String rowData[] = new String[4];
         model.setRowCount(0);
         for (int x = 0; x < favs.size(); x++) {
@@ -1842,7 +1842,7 @@ public class Politicos extends javax.swing.JFrame {
     private javax.swing.JLabel subtitulo;
     private javax.swing.JTable tblDeputado;
     private javax.swing.JTable tblDeputado3;
-    private javax.swing.JTable tblDeputado4;
+    private javax.swing.JTable tblMeusFavoritos;
     private javax.swing.JTable tblUsuario;
     private javax.swing.JLabel titulo;
     private javax.swing.JTextField txtCPF;
