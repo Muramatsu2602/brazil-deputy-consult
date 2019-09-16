@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportFavoritos" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="48e2a62f-2897-4e4e-8138-7a61027280c3">
-	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.zoom" value="1.6105100000000008"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<queryString>
@@ -59,7 +59,7 @@
 				<text><![CDATA[nome]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="276" y="0" width="138" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="b32e247a-cb91-4880-ab09-744acdce308f"/>
+				<reportElement mode="Opaque" x="340" y="-1" width="81" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="b32e247a-cb91-4880-ab09-744acdce308f"/>
 				<textElement textAlignment="Center">
 					<font size="14" isBold="true"/>
 				</textElement>
@@ -71,6 +71,13 @@
 					<font size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[partido]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="276" y="0" width="81" height="20" forecolor="#E6E6E6" backcolor="#E6E6E6" uuid="677d4046-e313-4915-b30a-510b7332a069"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[estado]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
@@ -94,18 +101,18 @@
 				<textFieldExpression><![CDATA[""+$F{nome}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="276" y="0" width="138" height="20" uuid="4545779f-25b2-4f5f-967c-708ba16fa848"/>
-				<textElement>
-					<font size="14"/>
-				</textElement>
-				<textFieldExpression><![CDATA[""+$F{estado}]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement x="414" y="0" width="138" height="20" uuid="4dcf059a-f1d8-40af-a3ea-98203587b515"/>
+				<reportElement x="456" y="0" width="49" height="19" uuid="4dcf059a-f1d8-40af-a3ea-98203587b515"/>
 				<textElement>
 					<font size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[""+$F{partido}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="356" y="1" width="58" height="19" uuid="4545779f-25b2-4f5f-967c-708ba16fa848"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[""+$F{estado}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
