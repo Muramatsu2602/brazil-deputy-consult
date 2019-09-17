@@ -78,10 +78,11 @@ public class BancoFavoritos {
     }
 
     public void excluir() {
-        fsql = "DELETE FROM favoritos WHERE id_favoritos=?";
+        fsql = "DELETE FROM favoritos WHERE id_deputado=? AND usuario_id=?";
         try {
             pstmt = con.prepareStatement(fsql);
             pstmt.setString(1, this.fav.getIdDeputado());
+            pstmt.setString(2, this.fav.getUsuarioId());
             pstmt.execute();
             pstmt.close();
         } catch (Exception erro) {
@@ -93,18 +94,14 @@ public class BancoFavoritos {
     // enviar id_usuario via parametro das funcoes?
     public void alterar() {
         fsql = "UPDATE favoritos SET"
-                + " nome=?"
-                + ", partido=?"
-                + ", estado=?"
-                + "WHERE id_favoritos=? ;";
+                + " status=1"
+                + "WHERE id_deputado=? ;";
         try {
             pstmt = con.prepareStatement(fsql);
 
             //pstmt.setString(1,bdnome);
-            pstmt.setString(1, this.fav.getNome());
-            pstmt.setString(2, this.fav.getPartido());
-            pstmt.setString(3, this.fav.getEstado());
-            pstmt.setString(4, this.fav.getIdDeputado());
+            pstmt.setString(1, this.fav.getIdDeputado());
+           
             pstmt.execute();
             pstmt.close();
         } catch (Exception erro) {
@@ -179,11 +176,12 @@ public class BancoFavoritos {
         List favs = new ArrayList();
         Favorito fav = new Favorito();
         try {
+            
             pstmt = con.prepareStatement(fsql);
             pstmt.setString(1,id);
             rs = pstmt.executeQuery();
             while (rs.next()) {
-                fav.setPartido(rs.getString("partido"));
+               fav.setPartido(rs.getString("partido"));
                 fav.setNome(rs.getString("nome"));
                 fav.setStatus(rs.getInt("status"));
                 fav.setIdDeputado(rs.getString("id_deputado"));
@@ -192,7 +190,6 @@ public class BancoFavoritos {
                 fav = null;
                 fav = new Favorito();
                 favs.add(fav);
-                
             }
             pstmt.close();
             return favs;
