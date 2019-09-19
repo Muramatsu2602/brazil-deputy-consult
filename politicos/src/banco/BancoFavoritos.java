@@ -78,10 +78,11 @@ public class BancoFavoritos {
     }
 
     public void excluir() {
-        fsql = "DELETE FROM favoritos WHERE id_favorito=?";
+        fsql = "DELETE FROM favoritos WHERE deputado_id=? AND usuario_id=?";
         try {
             pstmt = con.prepareStatement(fsql);
-            pstmt.setString(1, this.fav.getIdFavorito());
+            pstmt.setString(1, this.fav.getDeputadoId());
+             pstmt.setString(2, this.fav.getUsuarioId());
             pstmt.execute();
             pstmt.close();
         } catch (Exception erro) {
@@ -142,7 +143,7 @@ public class BancoFavoritos {
                  bdtipo = rs.getString("tipo"); // ?? --> campo da tabela
                  dados.add(bdid);
                  dados.add(bdtipo);*/
-
+                this.fav.setIdFavorito(rs.getString("id_favoritos"));
                 this.fav.setDeputadoId(rs.getString("deputado_id"));
                 this.fav.setNome( rs.getString("nome"));
                 this.fav.setEstado(rs.getString("estado"));
@@ -186,15 +187,41 @@ public class BancoFavoritos {
                 fav.setDeputadoId(rs.getString("deputado_id"));
                 fav.setEstado(rs.getString("estado"));
                 fav.setUsuarioId(rs.getString("usuario_id"));
+                
+                favs.add(fav);
                 fav = null;
                 fav = new Favorito();
-                favs.add(fav);
             }
             pstmt.close();
             return favs;
         } catch (Exception erroi) {
             JOptionPane.showMessageDialog(null,
                     " Erro procura do id_favoritos (" + id + ")-->" + erroi);
+        }
+        return null;
+    }//procura 
+public Favorito procura(String idu, String idd) {
+        fsql = "SELECT * FROM favoritos WHERE usuario_id=? AND deputado_id=? AND status=1;";
+        Favorito fav = new Favorito();
+        try {
+            
+            pstmt = con.prepareStatement(fsql);
+            pstmt.setString(1,idu);
+            pstmt.setString(2,idd);
+            rs = pstmt.executeQuery();
+            if (rs.next()) {
+               fav.setPartido(rs.getString("partido"));
+                fav.setNome(rs.getString("nome"));
+                fav.setStatus(rs.getInt("status"));
+                fav.setDeputadoId(rs.getString("deputado_id"));
+                fav.setEstado(rs.getString("estado"));
+                fav.setUsuarioId(rs.getString("usuario_id"));
+            }
+            pstmt.close();
+            return fav;
+        } catch (Exception erroi) {
+            JOptionPane.showMessageDialog(null,
+                    " Erro procura do id_favoritos (" + idd + ")-->" + erroi);
         }
         return null;
     }//procura 

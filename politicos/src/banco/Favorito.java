@@ -30,8 +30,8 @@ public class Favorito {
         this.status = 0;
     }
 
-    public Favorito(String id_deputado, String nome, String usuario_id, String partido, String estado, int status) {
-        this.id_favorito = "";
+    public Favorito(String id_favoritos, String id_deputado, String nome, String usuario_id, String partido, String estado, int status) {
+        this.id_favorito = id_favoritos;
         this.deputado_id = id_deputado;
         this.nome = nome;
         this.usuario_id = usuario_id;
