@@ -14,6 +14,7 @@ import banco.RelatorioUsuario;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -1377,6 +1378,7 @@ public class Politicos extends javax.swing.JFrame {
         boolean certo = false;
      
              Favorito fav = new Favorito(
+                
                 subtitulo.getText(),
                 titulo.getText(),
                 this.usuario.getIdUsuario(),
@@ -1615,6 +1617,7 @@ public class Politicos extends javax.swing.JFrame {
     public List<Deputado> todos_deputados;
     public boolean first_load = true;
 
+    
     private void imprimirSelecao(String id) throws JSONException {
         ImageIcon image = null;
 

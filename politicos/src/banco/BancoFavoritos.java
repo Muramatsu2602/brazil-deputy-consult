@@ -50,24 +50,24 @@ public class BancoFavoritos {
     public void incluir()//pkchave (chamada,turma)
     {
         fsql = "INSERT INTO favoritos ("
-                
-                + "id_deputado,"
+                + "id_favorito,"
+                + "deputado_id,"
                 + "nome,"
                 + "usuario_id,"
                 + "partido,"
                 + "estado,"
                 + "status"
                 + ")"
-                + "VALUES (?,?,?,?,?,?)";
+                + "VALUES (?,?,?,?,?,?,?)";
         try {
             pstmt = con.prepareStatement(fsql);
-            // pstmt.setInt(1, this.id_favoritos);
-            pstmt.setString(1, this.fav.getIdDeputado());
-            pstmt.setString(2, this.fav.getNome());
-            pstmt.setString(3, this.fav.getUsuarioId());
-            pstmt.setString(4, this.fav.getPartido());
-            pstmt.setString(5, this.fav.getEstado());
-            pstmt.setInt(6, 1);
+            pstmt.setString(1, this.fav.getIdFavorito());
+            pstmt.setString(2, this.fav.getDeputadoId());
+            pstmt.setString(3, this.fav.getNome());
+            pstmt.setString(4, this.fav.getUsuarioId());
+            pstmt.setString(5, this.fav.getPartido());
+            pstmt.setString(6, this.fav.getEstado());
+            pstmt.setInt(7, 1);
 
             pstmt.execute();
             pstmt.close();
@@ -78,11 +78,10 @@ public class BancoFavoritos {
     }
 
     public void excluir() {
-        fsql = "DELETE FROM favoritos WHERE id_deputado=? AND usuario_id=?";
+        fsql = "DELETE FROM favoritos WHERE id_favorito=?";
         try {
             pstmt = con.prepareStatement(fsql);
-            pstmt.setString(1, this.fav.getIdDeputado());
-            pstmt.setString(2, this.fav.getUsuarioId());
+            pstmt.setString(1, this.fav.getIdFavorito());
             pstmt.execute();
             pstmt.close();
         } catch (Exception erro) {
@@ -100,7 +99,7 @@ public class BancoFavoritos {
             pstmt = con.prepareStatement(fsql);
 
             //pstmt.setString(1,bdnome);
-            pstmt.setString(1, this.fav.getIdDeputado());
+            pstmt.setString(1, this.fav.getDeputadoId());
            
             pstmt.execute();
             pstmt.close();
@@ -144,7 +143,7 @@ public class BancoFavoritos {
                  dados.add(bdid);
                  dados.add(bdtipo);*/
 
-                this.fav.setIdDeputado(rs.getString("id_deputado"));
+                this.fav.setDeputadoId(rs.getString("deputado_id"));
                 this.fav.setNome( rs.getString("nome"));
                 this.fav.setEstado(rs.getString("estado"));
                 this.fav.setPartido(rs.getString("partido"));
@@ -184,7 +183,7 @@ public class BancoFavoritos {
                fav.setPartido(rs.getString("partido"));
                 fav.setNome(rs.getString("nome"));
                 fav.setStatus(rs.getInt("status"));
-                fav.setIdDeputado(rs.getString("id_deputado"));
+                fav.setDeputadoId(rs.getString("deputado_id"));
                 fav.setEstado(rs.getString("estado"));
                 fav.setUsuarioId(rs.getString("usuario_id"));
                 fav = null;
