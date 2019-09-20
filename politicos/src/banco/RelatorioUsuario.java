@@ -80,7 +80,8 @@ public class RelatorioUsuario {
             //exibe o resultado
             JasperViewer viewer = new JasperViewer(impressao, true);
 
-            viewer.show();
+            //viewer.show();
+            viewer.setVisible(true);
 
             //fechando o banco
             con.close();
