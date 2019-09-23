@@ -333,14 +333,28 @@ public class Cadastro extends javax.swing.JFrame {
             String id = "0";
             String nome = txtNome.getText();
             String cpf = txtCPF.getText();
+            
             String email = txtEmail.getText();
             String senha = txtSenha.getText();
             String ideologia = txtIdeologia.getText();
 
-          
-                id = randomico(12);
-            
-
+          if(!email.toLowerCase().contains("@") || !email.toLowerCase().contains(".com")){
+             
+              
+                  JOptionPane.showMessageDialog(null,
+                    "Email inconsistente ");
+                  txtEmail.grabFocus();
+                  certo = false;
+                  return;
+          }else{
+            if(!cpf.matches("[0-9]+") && cpf.length() != 11){
+                JOptionPane.showMessageDialog(null,
+                    "CPF inconsistente ");
+                  txtCPF.grabFocus();
+                  certo = false;
+                  return;
+            } else{
+            id = randomico(12);
             Usuario user = new Usuario(id, nome, cpf, email, senha, ideologia, 1);
 
             BancoUsuarios usuario = new BancoUsuarios(user);
@@ -348,6 +362,8 @@ public class Cadastro extends javax.swing.JFrame {
             usuario.connect();
             usuario.incluir();
             usuario.disconnect();
+            }
+          }
         } catch (Exception erro) {
             certo = false;
             JOptionPane.showMessageDialog(null,

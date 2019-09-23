@@ -57,7 +57,58 @@ public class Capi {
             
         return result;
     }////pesquisaDeputados
-    
+    public static ArrayList<String> getPartidos() throws JSONException{
+     /*   CapiConexao dados_camara;
+        dados_camara = new CapiConexao();
+        JSONObject my_obj = new JSONObject(dados_camara.getPartidos());
+        JSONArray array_partidos;
+        try{array_partidos = my_obj.getJSONArray("dados");}
+        catch(JSONException e){array_partidos = null; System.exit(1);}
+        JSONObject obj;*/
+        ArrayList<String> siglas = new ArrayList<>();
+        CapiConexao dados_camara;
+        dados_camara = new CapiConexao();
+        JSONObject my_obj = new JSONObject(dados_camara.getInfo());
+        JSONArray array_deputados = my_obj.getJSONArray("dados");
+        JSONObject obj;
+        List<Deputado> dep = new ArrayList<>();
+        String sigla;
+         for(int x = 0; x<array_deputados.length(); x++){
+          //  System.out.println("(" + x + ") " + array_deputados.get(x));
+            obj = new JSONObject(array_deputados.get(x).toString());
+            dep.add(new Deputado(obj));
+        }//for
+        for(int x = 0; x<dep.size(); x++){
+          /* System.out.println("(" + x + ") " + array_deputados.get(x));
+            obj = new JSONObject(array_deputados.get(x).getString("siglas"));
+            System.out.println(array_deputados.get(x).toString());
+            sigla = obj.getString("sigla");*/
+            sigla = dep.get(x).getSiglaPartido();
+            siglas.add(sigla);
+        }//for
+        
+        return removeDuplicates(siglas);
+    } 
+   public static <T> ArrayList<T> removeDuplicates(ArrayList<T> list) 
+    { 
+  
+        // Create a new ArrayList 
+        ArrayList<T> newList = new ArrayList<T>(); 
+  
+        // Traverse through the first list 
+        for (T element : list) { 
+  
+            // If this element is not present in newList 
+            // then add it 
+            if (!newList.contains(element)) { 
+                   System.out.println(element);
+                newList.add(element); 
+            } 
+        } 
+  
+        // return the new list 
+        return newList; 
+    }  
     public static List<Discurso> mostraDiscursos(String id) throws JSONException {
         CapiConexao dados_camara;
         dados_camara = new CapiConexao();

@@ -42,6 +42,19 @@ public class Politicos extends javax.swing.JFrame {
         this.usuario = usuario;
         initComponents();
         imprimirMinhaConta();
+        jRadioButton1.setSelected(true);
+        try {
+            carregarComboBox();
+        } catch (JSONException e) {
+            System.out.println("Opsss: " + e);
+        }
+    }
+
+    private void carregarComboBox() throws JSONException {
+        ArrayList<String> siglas = Capi.getPartidos();
+        for (int x = 0; x < siglas.size(); x++) {
+            cbxPartidos.addItem(siglas.get(x));
+        }
     }
 
     /**
@@ -71,9 +84,9 @@ public class Politicos extends javax.swing.JFrame {
         tblDeputado = new javax.swing.JTable();
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
         jTextField1 = new javax.swing.JTextField();
         btnPesquisarDeputado = new javax.swing.JButton();
+        cbxPartidos = new javax.swing.JComboBox();
         MostraDeputado = new javax.swing.JPanel();
         body_mostradeputado = new javax.swing.JPanel();
         lblImg = new javax.swing.JLabel();
@@ -350,9 +363,6 @@ public class Politicos extends javax.swing.JFrame {
         radPesquisa.add(jRadioButton2);
         jRadioButton2.setText("Id");
 
-        radPesquisa.add(jRadioButton3);
-        jRadioButton3.setText("Partido");
-
         jTextField1.setToolTipText("Pesquisar");
 
         btnPesquisarDeputado.setText("Pesquisar");
@@ -361,6 +371,8 @@ public class Politicos extends javax.swing.JFrame {
                 btnPesquisarDeputadoActionPerformed(evt);
             }
         });
+
+        cbxPartidos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "todos" }));
 
         javax.swing.GroupLayout body_pesquisaLayout = new javax.swing.GroupLayout(body_pesquisa);
         body_pesquisa.setLayout(body_pesquisaLayout);
@@ -375,7 +387,7 @@ public class Politicos extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jRadioButton2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jRadioButton3)
+                        .addComponent(cbxPartidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(body_pesquisaLayout.createSequentialGroup()
                         .addComponent(jTextField1)
@@ -393,9 +405,9 @@ public class Politicos extends javax.swing.JFrame {
                 .addGroup(body_pesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jRadioButton1)
                     .addComponent(jRadioButton2)
-                    .addComponent(jRadioButton3))
+                    .addComponent(cbxPartidos, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE))
         );
 
         Deputados.add(body_pesquisa);
@@ -1301,8 +1313,8 @@ public class Politicos extends javax.swing.JFrame {
     }//GEN-LAST:event_tblDeputadoMouseClicked
 
     private void btnVoltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVoltarMouseClicked
-        setLblColor(btnMinhaConta);
-        resetLblColor(btnPesquisa);
+        setLblColor(btnPesquisa);
+        resetLblColor(btnMinhaConta);
         resetLblColor(btnUsuarios);
         limpaTela();
         Deputados.setVisible(true);
@@ -1320,6 +1332,7 @@ public class Politicos extends javax.swing.JFrame {
         resetLblColor(btnPesquisa);
         resetLblColor(btnUsuarios);
         limpaTela();
+        this.imprimirFavoritos(txtPesquisaMC.getText());
 
         this.txtNome.setText(usuario.getNome());
         this.txtEmail.setText(usuario.getEmail());
@@ -1369,7 +1382,7 @@ public class Politicos extends javax.swing.JFrame {
     private void btnPesquisarUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPesquisarUsuarioMouseClicked
         this.imprimirUsuarios();
     }//GEN-LAST:event_btnPesquisarUsuarioMouseClicked
- public static String randomico(int length) {
+    public static String randomico(int length) {
         String CHAR_LOWER = "abcdefghijklmnopqrstuvwxyz";
         String CHAR_UPPER = CHAR_LOWER.toUpperCase();
         String NUMBER = "0123456789";
@@ -1397,48 +1410,44 @@ public class Politicos extends javax.swing.JFrame {
     }
     private void btnFavoritarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFavoritarMouseClicked
         //new Politicos(null).setVisible(true);
-       // this.dispose();
+        // this.dispose();
         BancoFavoritos banco = new BancoFavoritos();
         Favorito fav = null;//banco.procura(this.usuario.getIdUsuario(), subtitulo.getText());
         boolean certo = false;
-        if(fav==null){
-                fav = new Favorito(
-                   randomico(12),
-                   subtitulo.getText(),
-                   titulo.getText(),
-                   this.usuario.getIdUsuario(),
-                   lblPartido.getText(),
-                   lblUf.getText(),
-                   1
-           );
+        if (fav == null) {
+            fav = new Favorito(
+                    randomico(12),
+                    subtitulo.getText(),
+                    titulo.getText(),
+                    this.usuario.getIdUsuario(),
+                    lblPartido.getText(),
+                    lblUf.getText(),
+                    1
+            );
         }
-          
-        
-       
+
         banco = new BancoFavoritos(fav);
 
         try {
             banco.connect();
-            if(btnFavoritar.getText().equals("Desfavoritar")){
+            if (btnFavoritar.getText().equals("Desfavoritar")) {
                 banco.excluir();
                 btnFavoritar.setText("Favoritar");
-                
-            JOptionPane.showMessageDialog(null,
-                    "Desfavoritado com sucesso!");
-            }
-            else{
-            banco.incluir();
-            btnFavoritar.setText("Desfavoritar");
-            JOptionPane.showMessageDialog(null,
-                    "Favoritado com sucesso!");
+
+                JOptionPane.showMessageDialog(null,
+                        "Desfavoritado com sucesso!");
+            } else {
+                banco.incluir();
+                btnFavoritar.setText("Desfavoritar");
+                JOptionPane.showMessageDialog(null,
+                        "Favoritado com sucesso!");
             }
             banco.disconnect();
         } catch (Exception erro) {
-           
+
             JOptionPane.showMessageDialog(null,
                     "Um erro ocorreu: " + erro);
-        } 
-        
+        }
 
 
     }//GEN-LAST:event_btnFavoritarMouseClicked
@@ -1450,7 +1459,7 @@ public class Politicos extends javax.swing.JFrame {
     private void tblMeusFavoritosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMeusFavoritosMouseClicked
         DefaultTableModel model = (DefaultTableModel) tblMeusFavoritos.getModel();
         int selectedRowIndex = tblMeusFavoritos.getSelectedRow();
-       boolean certo = true;
+        boolean certo = true;
         String id_deputado = model.getValueAt(selectedRowIndex, 0).toString();
 
         BancoFavoritos bd = new BancoFavoritos();
@@ -1643,8 +1652,8 @@ public class Politicos extends javax.swing.JFrame {
     public List<Deputado> todos_deputados;
     public boolean first_load = true;
 
-    
     private void imprimirSelecao(String id) throws JSONException {
+         txtDiscurso.setText("");
         ImageIcon image = null;
 
         System.out.println(id);
@@ -1715,19 +1724,36 @@ public class Politicos extends javax.swing.JFrame {
             this.todos_deputados = Capi.mostraDeputados();
             this.first_load = false;
         }
+        //  this.todos_deputados = Capi.mostraDeputados();
+        String sigla = cbxPartidos.getSelectedItem().toString();
+        ArrayList<Deputado> deps = new ArrayList<>();
+        if (sigla.equalsIgnoreCase("todos")) {
+            for (int x = 0; x < this.todos_deputados.size(); x++) {
+
+                deps.add(this.todos_deputados.get(x));
+
+            }
+        } else {
+            for (int x = 0; x < this.todos_deputados.size(); x++) {
+
+                if (this.todos_deputados.get(x).getSiglaPartido().equalsIgnoreCase(sigla)) {
+                    deps.add(this.todos_deputados.get(x));
+                }
+            }
+        }
         DefaultTableModel model = (DefaultTableModel) tblDeputado.getModel();
 
         model.setRowCount(0);
         List<Deputado> y = null;
         if (jRadioButton1.isSelected()) {
-            y = Capi.pesquisaDeputados("nome", pesquisa, this.todos_deputados);
+            y = Capi.pesquisaDeputados("nome", pesquisa, deps);
         }
         if (jRadioButton2.isSelected()) {
-            y = Capi.pesquisaDeputados("id", pesquisa,this.todos_deputados);
+            y = Capi.pesquisaDeputados("id", pesquisa, deps);
         }
-        if (jRadioButton3.isSelected()) {
-            y = Capi.pesquisaDeputados("partido", pesquisa, this.todos_deputados);
-        }
+        /*  if (jRadioButton3.isSelected()) {
+         y = Capi.pesquisaDeputados("partido", pesquisa, this.todos_deputados);
+         }*/
         String rowData[] = new String[4];
         for (int x = 0; x < y.size(); x++) {
             rowData[0] = y.get(x).getId();
@@ -1747,19 +1773,20 @@ public class Politicos extends javax.swing.JFrame {
         String rowData[] = new String[4];
         model.setRowCount(0);
         for (int x = 0; x < favs.size(); x++) {
-            if(favs.get(x).getNome().toLowerCase().contains(pesquisa.toLowerCase())){
-                
-            rowData[0] = favs.get(x).getDeputadoId();
-            rowData[1] = favs.get(x).getNome();
-            rowData[2] = favs.get(x).getPartido();
-            rowData[3] = favs.get(x).getEstado();
-            System.out.println(rowData[1] + " - " + favs.get(x).getNome());
-            model.addRow(rowData);
+            if (favs.get(x).getNome().toLowerCase().contains(pesquisa.toLowerCase())) {
+
+                rowData[0] = favs.get(x).getDeputadoId();
+                rowData[1] = favs.get(x).getNome();
+                rowData[2] = favs.get(x).getPartido();
+                rowData[3] = favs.get(x).getEstado();
+                System.out.println(rowData[1] + " - " + favs.get(x).getNome());
+                model.addRow(rowData);
             }
 
         }
     }
-private void imprimirFavoritosMU(String pesquisa) {
+
+    private void imprimirFavoritosMU(String pesquisa) {
         BancoFavoritos banco = new BancoFavoritos();
         banco.connect();
         List<Favorito> favs = banco.procura(usuario_view.getIdUsuario());
@@ -1767,20 +1794,21 @@ private void imprimirFavoritosMU(String pesquisa) {
         DefaultTableModel model = (DefaultTableModel) tblFavoritosMU.getModel();
         String rowData[] = new String[4];
         model.setRowCount(0);
-        
+
         for (int x = 0; x < favs.size(); x++) {
-            if(favs.get(x).getNome().toUpperCase().contains(pesquisa.toUpperCase())){
-                
-            rowData[0] = favs.get(x).getDeputadoId();
-            rowData[1] = favs.get(x).getNome();
-            rowData[2] = favs.get(x).getPartido();
-            rowData[3] = favs.get(x).getEstado();
-            System.out.println(favs.get(x).getNome());
-            model.addRow(rowData);
+            if (favs.get(x).getNome().toUpperCase().contains(pesquisa.toUpperCase())) {
+
+                rowData[0] = favs.get(x).getDeputadoId();
+                rowData[1] = favs.get(x).getNome();
+                rowData[2] = favs.get(x).getPartido();
+                rowData[3] = favs.get(x).getEstado();
+             
+                model.addRow(rowData);
             }
 
         }
     }
+
     private void imprimirUsuarios() {
         BancoUsuarios banco = new BancoUsuarios();
         banco.connect();
@@ -1791,14 +1819,14 @@ private void imprimirFavoritosMU(String pesquisa) {
         model.setRowCount(0);
         for (int x = 0; x < u.size(); x++) {
             if (u.get(x).getStatus() == 1) {
-                if(u.get(x).getNome().contains(txtPesquisaUsuario.getText().toLowerCase())){
-                         rowData[0] = u.get(x).getIdUsuario();
-                rowData[1] = u.get(x).getNome();
-                rowData[2] = u.get(x).getCpf();
-                rowData[3] = u.get(x).getSenha();
-                model.addRow(rowData);
+                if (u.get(x).getNome().contains(txtPesquisaUsuario.getText().toLowerCase())) {
+                    rowData[0] = u.get(x).getIdUsuario();
+                    rowData[1] = u.get(x).getNome();
+                    rowData[2] = u.get(x).getCpf();
+                    rowData[3] = u.get(x).getSenha();
+                    model.addRow(rowData);
                 }
-           
+
             }
 
         }
@@ -1880,6 +1908,7 @@ private void imprimirFavoritosMU(String pesquisa) {
     private javax.swing.JButton btnPesquisarUsuario;
     private javax.swing.JLabel btnUsuarios;
     private javax.swing.JLabel btnVoltar;
+    private javax.swing.JComboBox cbxPartidos;
     private javax.swing.JPanel header;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1904,7 +1933,6 @@ private void imprimirFavoritosMU(String pesquisa) {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;

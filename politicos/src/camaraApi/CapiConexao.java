@@ -83,4 +83,32 @@ public class CapiConexao {
         }
         return responseBody;
     }
+   /*  public String getPartidos(){
+    //    String URL_API = "https://dadosabertos.camara.leg.br/api/v2/partidos";
+        String responseBody = "";
+       // String path = "?ordem=ASC&ordenarPor=sigla";
+        try{
+            HttpGet HttpGet = new HttpGet("https://dadosabertos.camara.leg.br/api/v2/partidos?ordem=ASC&ordenarPor=sigla");
+            
+            //ResponseHandler -> serve para manipular a resposta vinda da api, mostrando-nos o resultado de nosso pedido(e não apenas o código dele)
+            ResponseHandler<String> responseHandler = new ResponseHandler<String>(){
+                @Override
+                public String handleResponse(final HttpResponse response) throws ClientProtocolException,IOException {
+                    int status = response.getStatusLine().getStatusCode();
+                    if (status >= 200 && status < 300) {
+                        HttpEntity entity = response.getEntity();
+                        return entity != null ? EntityUtils.toString(entity) : null;
+                    } else {
+                        throw new ClientProtocolException("status error: "+ status);
+                    }
+                }
+            };
+            responseBody = this.HTTPclient.execute(HttpGet, responseHandler);
+            System.out.println("------------------------------------------------------------");
+        }
+        catch(IOException e){
+            Logger.getLogger(CapiConexao.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return responseBody;
+    }*/
 }
